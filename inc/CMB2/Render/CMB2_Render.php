@@ -348,8 +348,12 @@ class CMB2_Render implements Render_Interface {
 
 		$field->peform_param_callback( 'before' );
 
-		$field_type = new \CMB2_Types( $field );
-		$field_type->render();
+		if ( $field->maybe_callback( 'render_field_cb' ) ) {
+			$field->peform_param_callback( 'render_field_cb' );
+		} else {
+			$field_type = new \CMB2_Types( $field );
+			$field_type->render();
+		}
 
 		// Show field validation error.
 		$this->peform_field_error( $field );
