@@ -2,6 +2,7 @@
     "name": "awethemes/skeleton",
     "description": "A WordPress framework made for Awethemes projects.",
     "type": "wordpress-plugin",
+    "license": "GPL-2.0+"
     "authors": [
         {
             "name": "awethemes",
