@@ -238,14 +238,15 @@
       text-decoration: none;
       line-height: 20px !important;
       border-bottom: 1px solid $nav-vertical-border;
-      background-color: #fff;
+      background-color: #fafafa;
     }
 
+    li > a.active,
     li.active > a,
     li:hover > a,
     li:focus:active > a {
       position: relative;
-      background-color: #f9f9f9;
+      background-color: #fff;
     }
   }
 
@@ -297,4 +298,8 @@
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center center;
+}
+
+.cmb2-tab.active {
+  display: block;
 }
