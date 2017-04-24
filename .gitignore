@@ -1,0 +1,11 @@
+*.css.map
+*.js.map
+.DS_Store
+Thumbs.db
+wp-cli.local.yml
+/vendor/
+/plugins/
+node_modules/
+bower_components/
+src-assets/bower/
+composer.lock
