@@ -62,19 +62,19 @@ gulp.task('sass', function () {
     .pipe(sass({ errLogToConsole: true }))
     .pipe(autoprefixer())
     .pipe(sourcemaps.write('maps'))
-    .pipe(gulp.dest('public/css'))
+    .pipe(gulp.dest('css'))
     .pipe(bs.stream({ match: '**/*.css' }));
 });
 
 /*
 gulp.task('css:minify', ['sass'], function () {
-  return gulp.src(['public/css/*.css', '!public/css/*.min.css'])
+  return gulp.src(['css/*.css', '!css/*.min.css'])
     .pipe(plumber({ errorHandler: handleErrors }))
     .pipe(sourcemaps.init())
     .pipe(rename({ extname: '.min.css' }))
     .pipe(cssnano())
     .pipe(sourcemaps.write('maps'))
-    .pipe(gulp.dest('public/css'))
+    .pipe(gulp.dest('css'))
     .pipe(bs.stream({ match: '**\/*.css' }));
 });
 */
@@ -90,55 +90,55 @@ gulp.task('js', function () {
 
   return gulp.src('resouces/js/*.js', { read: false })
     .pipe(plumber({ errorHandler: handleErrors }))
-    // .pipe(changed('public/js'))
+    // .pipe(changed('js'))
     .pipe(tap(tapCallback))
     .pipe(buffer())
     .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(include({ includePaths: __dirname + '/resouces/js' }))
     .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('public/js'))
+    .pipe(gulp.dest('js'))
     .pipe(bs.stream());
 });
 
 gulp.task('js:minify', ['js'], function () {
-  return gulp.src(['public/js/skeleton.js'])
+  return gulp.src(['js/skeleton.js'])
     .pipe(plumber({ errorHandler: handleErrors }))
     .pipe(sourcemaps.init())
     .pipe(rename({ extname: '.min.js' }))
     .pipe(uglify({ preserveComments: 'license' }))
     .pipe(sourcemaps.write('maps'))
-    .pipe(gulp.dest('public/js'))
+    .pipe(gulp.dest('js'))
     .pipe(bs.stream());
 });
 
-gulp.task('serve', function () {
-  bs.init({
-    // files: ['inc/**/*.php', '*.php'],
-    proxy: 'wp.dev',
-    snippetOptions: {
-      // whitelist: ['/wp-admin/admin-ajax.php'],
-      // blacklist: ['/wp-admin/**'],
-    }
-  });
+gulp.task('watch', function () {
+  // bs.init({
+  //   // files: ['inc/**/*.php', '*.php'],
+  //   proxy: 'wp.dev',
+  //   snippetOptions: {
+  //     // whitelist: ['/wp-admin/admin-ajax.php'],
+  //     // blacklist: ['/wp-admin/**'],
+  //   }
+  // });
 
-  gulp.watch(['public/jssrc/**/*.js'], ['js']);
-  gulp.watch(['public/sass/**/*.scss'], ['sass']);
+  gulp.watch(['resouces/js/**/*.js'], ['js']);
+  gulp.watch(['resouces/sass/**/*.scss'], ['sass']);
 });
 
 gulp.task('clean', function () {
   return del([
-    'public/js/maps',
-    'public/css/maps',
+    'css/maps',
+    'css/skeleton*.css',
+    'js/maps',
+    'js/skeleton*.js',
     'i18n/skeleton.pot',
-    'public/js/skeleton*.js',
-    'public/css/skeleton*.css',
   ]);
 });
 
 gulp.task('build', function (callback) {
-  series('clean', ['js:minify'], 'wp-pot', callback);
+  series('clean', ['sass', 'js:minify'], 'wp-pot', callback);
 });
 
 gulp.task('default', function (callback) {
-  series('build', 'serve', callback);
+  series('build', 'watch', callback);
 });
