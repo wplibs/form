@@ -70,9 +70,6 @@ class Post_Type {
 
 		// Binding CPT instances into the container.
 		skeleton()->bind_post_type( $this );
-
-		// Allow register meta boxes via `meta_boxes()` method.
-		$this->register_meta_boxes();
 	}
 
 	/**
@@ -117,6 +114,9 @@ class Post_Type {
 
 		// Set registered post type object.
 		$this->post_type_object = $post_type;
+
+		// Allow register meta boxes via `$this->create_metabox()` method.
+		$this->register_metaboxes();
 
 		add_filter( 'enter_title_here', array( $this, 'enter_title' ) );
 		add_filter( 'post_updated_messages', array( $this, 'messages' ) );
@@ -309,7 +309,7 @@ class Post_Type {
 	/**
 	 * Add meta boxes to this post type.
 	 *
-	 * @see $this->add_meta_box()
+	 * @see $this->create_metabox()
 	 * @see Skeleton\Metabox
 	 */
 	public function register_metaboxes() {}
