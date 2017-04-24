@@ -312,7 +312,7 @@ class Post_Type {
 	 * @see $this->add_meta_box()
 	 * @see Skeleton\Metabox
 	 */
-	public function register_meta_boxes() {}
+	public function register_metaboxes() {}
 
 	/**
 	 * Make a new meta box for this CPT.
