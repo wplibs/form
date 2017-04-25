@@ -66,3 +66,40 @@ if ( ! function_exists( 'skeleton_psr4_autoloader' ) ) :
 		$loader->register();
 	}
 endif;
+
+if ( ! function_exists( 'skeleton_display_field_errors' ) ) :
+	/**
+	 * //
+	 *
+	 * @param  CMB2_Field $field CMB2 Field instance.
+	 * @return void
+	 */
+	function skeleton_display_field_errors( CMB2_Field $field ) {
+		$cmb2 = $field->get_cmb();
+
+		// Bail if not see a CMB2 instance.
+		if ( ! $cmb2 || is_wp_error( $cmb2 ) ) {
+			return;
+		}
+
+		$id = $field->id( true );
+		$errors = $cmb2->get_errors();
+
+		if ( isset( $errors[ $id ] ) ) {
+			$error_message = is_string( $errors[ $id ] ) ? $errors[ $id ] : $errors[ $id ][0];
+			printf( '<p class="cmb2-validate-error">%s</p>', $error_message ); // WPCS: XSS OK.
+		}
+	}
+endif;
+
+/**
+ * //
+ *
+ * @param  CMB2_Field $field CMB2 Field instance.
+ * @return void
+ */
+function skeleton_render_field( CMB2_Field $field ) {
+	$field_type = new CMB2_Types( $field );
+
+	$field_type->render();
+}
