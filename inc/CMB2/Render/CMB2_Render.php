@@ -355,10 +355,10 @@ class CMB2_Render implements Render_Interface {
 			$field_type->render();
 		}
 
+		$field->peform_param_callback( 'after' );
+
 		// Show field validation error.
 		$this->peform_field_error( $field );
-
-		$field->peform_param_callback( 'after' );
 
 		echo "\n\t</div>\n</div>";
 
