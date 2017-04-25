@@ -189,18 +189,6 @@ class CMB2 extends CMB2Base {
 	}
 
 	/**
-	 * Add a CMB2 tab/section.
-	 *
-	 * @param  Section|string $id   CMB2 Section object, or tab/section ID.
-	 * @param  array|callable $args Optional. Section arguments or tab/section callback.
-	 * @return Section              The instance of the tab/section that was added.
-	 */
-	public function add_tab( $id, $args = array() ) {
-		_deprecated_function( __CLASS__ . '::' . __FUNCTION__, '1.0', 'add_section' );
-		return $this->add_section( $id, $args );
-	}
-
-	/**
 	 * Set tabable arguments or run a callback.
 	 *
 	 * @param Tabable_Interface $tabable Tabable object.
