@@ -317,15 +317,11 @@ class Post_Type {
 	/**
 	 * Make a new meta box for this CPT.
 	 *
-	 * Note: Use this method will create a metabox with ID `skeleton/post_type/{$cmb_id}`.
-	 *
 	 * @param  string   $cmb_id   Metabox ID.
 	 * @param  callable $callback Metabox arguments.
 	 * @return $this
 	 */
 	public function create_metabox( $cmb_id, $callback = null ) {
-		$cmb_id = $this->post_type . '/' . $cmb_id;
-
 		$metabox = new Metabox( $cmb_id, array(
 			'object_types' => array( $this->post_type ),
 		));
