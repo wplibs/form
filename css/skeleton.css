@@ -33,6 +33,37 @@
   margin-bottom: 0;
   margin-top: 0.5em; }
 
+.inner-sidebar .cmb2-wrap > .cmb-field-list > .cmb-row,
+#side-sortables .cmb2-wrap > .cmb-field-list > .cmb-row {
+  padding: 1rem !important; }
+
+/* Input Group */
+.skeleton-input-group {
+  margin-right: 15px;
+  display: inline-block; }
+
+.skeleton-input-group input,
+.skeleton-input-group__addon {
+  display: inline-block;
+  vertical-align: middle; }
+
+.skeleton-input-group input {
+  margin-right: 0; }
+
+.skeleton-input-group__addon {
+  white-space: nowrap;
+  padding: 6px 12px;
+  color: #444;
+  line-height: 1;
+  font-weight: normal;
+  text-align: center;
+  border: 1px solid #ddd;
+  background-color: #f1f1f1; }
+  .skeleton-input-group__addon:first-child {
+    border-right: 0; }
+  .skeleton-input-group__addon:last-child {
+    border-left: 0; }
+
 .cmb2-tab-pane {
   display: none; }
   .cmb2-tab-pane.active {

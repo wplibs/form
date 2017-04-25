@@ -47,11 +47,25 @@ window.Skeleton = window.Skeleton || {};
     init: function() {
       this.emitter.emit('initialize', this);
 
+      this.triggerTabs();
+
       // console.log(this.services);
 
       this.initialized = true;
       this.emitter.emit('initialized', this);
     },
+
+    triggerTabs() {
+      $('ul.cmb2-tabs .cmb2-tab-link').on('click', function(){
+        var tab_id = $(this).data('target');
+
+        $('ul.cmb2-tabs > .cmb2-tab').removeClass('active');
+        $('.cmb2-tab-pane').removeClass('active');
+
+        $(this).addClass('active');
+        $(tab_id).addClass('active');
+      });
+    }
   });
 
   /**

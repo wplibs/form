@@ -141,7 +141,7 @@ msgstr ""
 msgid "One or more error occurred."
 msgstr ""
 
-#: inc/Post_Type.php:85
+#: inc/Post_Type.php:82
 msgid "`%s` post type has never been registered before."
 msgstr ""
 
@@ -348,7 +348,7 @@ msgstr ""
 msgid "Set field priority instead of."
 msgstr ""
 
-#: inc/CMB2/Scripts_Hooks.php:56
+#: inc/CMB2/Scripts_Hooks.php:55
 msgid "Are you sure you want to do this?"
 msgstr ""
 
