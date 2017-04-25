@@ -59,15 +59,10 @@ class CMB2 extends CMB2Base {
 	/**
 	 * Add a field to the metabox.
 	 *
-	 * @param  array $field      Metabox field config array.
-	 * @param  void  $deprecated Deprecated this argument.
+	 * @param  array $field  Metabox field config array.
 	 * @return string|false
 	 */
-	public function add_field( array $field, $deprecated = 0 ) {
-		if ( ! empty( $deprecated ) ) {
-			_deprecated_argument( __CLASS__ . '::' . __FUNCTION__, '1.0', esc_html__( 'Set field priority instead of.', 'skeleton' ) );
-		}
-
+	public function add_field( array $field ) {
 		return parent::add_field( $field );
 	}
 
@@ -186,18 +181,6 @@ class CMB2 extends CMB2Base {
 	 */
 	public function remove_section( $id ) {
 		unset( $this->sections[ $id ] );
-	}
-
-	/**
-	 * Add a CMB2 tab/section.
-	 *
-	 * @param  Section|string $id   CMB2 Section object, or tab/section ID.
-	 * @param  array|callable $args Optional. Section arguments or tab/section callback.
-	 * @return Section              The instance of the tab/section that was added.
-	 */
-	public function add_tab( $id, $args = array() ) {
-		_deprecated_function( __CLASS__ . '::' . __FUNCTION__, '1.0', 'add_section' );
-		return $this->add_section( $id, $args );
 	}
 
 	/**
