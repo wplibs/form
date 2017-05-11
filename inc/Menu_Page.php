@@ -1,5 +1,8 @@
 <?php
+
 namespace Skeleton;
+
+use Skeleton\Support\Priority_List;
 
 /**
  * Easy build top-level/submenu menu page.
@@ -25,9 +28,9 @@ class Menu_Page {
 	/**
 	 * An array submenu will be add to top-level menu.
 	 *
-	 * @var array
+	 * @var \Skeleton\Support\Priority_List
 	 */
-	protected $submenus = array();
+	protected $submenus;
 
 	/**
 	 * Create a top-level menu.
@@ -49,6 +52,8 @@ class Menu_Page {
 		));
 
 		$this->topmenu_args['menu_slug'] = $this->topmenu;
+
+		$this->submenus = new Priority_List;
 	}
 
 	/**
@@ -84,8 +89,9 @@ class Menu_Page {
 		));
 
 		$submenu_args['menu_slug'] = $submenu_id;
+		$priority = isset( $submenu_args['priority'] ) ? (int) $submenu_args['priority'] : 10;
 
-		$this->submenus[ $submenu_id ] = $submenu_args;
+		$this->submenus->insert( $submenu_id, $submenu_args, $priority );
 	}
 
 	/**
