@@ -68,11 +68,54 @@ window.Skeleton = window.Skeleton || {};
     }
   });
 
+  S.deps = function () {
+    var $context = $('.cmb2-wrap > .cmb2-metabox', $(document));
+
+    $context.each(function () {
+      var $this = $(this);
+      var ruleset = $.deps.createRuleset();
+
+      // Build dependencies rule.
+      $this.find('[data-deps]').each(function () {
+        var $el = $(this);
+
+        var controllers = $el.data('deps').split('|'),
+            conditions = $el.data('depsCondition').split('|'),
+            depsValues = $el.data('depsValue').toString().split('|');
+
+        $.each(controllers, function (index, controller) {
+          var depsValue = depsValues[index] || '',
+              condition = conditions[index] || conditions[0];
+
+          var rule = ruleset.createRule('[data-deps-id="' + controller + '"]', condition, depsValue);
+          rule.include($el);
+        });
+      });
+
+      // Enable dependency.
+      $.deps.enable($this, ruleset, {
+        log: false,
+        checkTargets: false,
+        show: function show(el) {
+          el.slideDown(250, function () {
+            el.removeClass('hidden');
+          });
+        },
+        hide: function hide(el) {
+          el.slideUp(250, function () {
+            el.addClass('hidden');
+          });
+        }
+      });
+    });
+  };
+
   /**
    * Let's start!
    */
   $(function() {
     window.Skeleton.init();
+    window.Skeleton.deps();
   });
 
 })(jQuery, window.Skeleton);
