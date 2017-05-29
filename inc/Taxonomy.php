@@ -112,8 +112,8 @@ class Taxonomy {
 	public function set( array $taxonomy_args = array() ) {
 		$this->taxonomy_args = $this->parser_args( $taxonomy_args );
 
-		add_action( 'admin_init', array( $this, 'init_permalink_settings' ) );
-		add_action( 'current_screen', array( $this, 'save_permalink_settings' ) );
+		// add_action( 'admin_init', array( $this, 'init_permalink_settings' ) );
+		// add_action( 'current_screen', array( $this, 'save_permalink_settings' ) );
 
 		if ( doing_filter( 'skeleton/init' ) ) {
 			// If inside an `skeleton/init` action, simply call the register method.
