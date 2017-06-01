@@ -66,7 +66,7 @@ gulp.task('sass', function () {
     .pipe(bs.stream({ match: '**/*.css' }));
 });
 
-/*
+
 gulp.task('css:minify', ['sass'], function () {
   return gulp.src(['css/*.css', '!css/*.min.css'])
     .pipe(plumber({ errorHandler: handleErrors }))
@@ -77,7 +77,7 @@ gulp.task('css:minify', ['sass'], function () {
     .pipe(gulp.dest('css'))
     .pipe(bs.stream({ match: '**\/*.css' }));
 });
-*/
+
 
 gulp.task('js', function () {
   var tapCallback = function(file) {
