@@ -80,6 +80,11 @@ class Composer_Scripts {
 			'jtsternberg/twitterwp' => array( $docs, $tests, '.git*' ),
 			'webdevstudios/cmb2'    => array( $docs, $tests, 'languages/*.mo languages/*.po' ),
 			'webdevstudios/cmb2-post-search-field' => array( $docs, $tests, '*.png' ),
+			'webdevstudios/taxonomy_single_term'   => array( $docs, $tests ),
+
+			'roomify/bat'       => array( $docs, $tests ),
+			'nesbot/carbon'     => array( $docs, $tests ),
+			'pelago/emogrifier' => array( $docs, $tests, 'Configuration' ),
 		);
 	}
 }
