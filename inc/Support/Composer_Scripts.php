@@ -13,26 +13,37 @@ class Composer_Scripts {
 	 * @param  \Composer\Script\Event $event Composer Event Instance.
 	 */
 	public static function clean( Event $event ) {
-		$composer   = $event->getComposer();
-		$libs_path  = dirname( $composer->getConfig()->get( 'vendor-dir' ) ) . '/libs';
+		$composer = $event->getComposer();
+
+		$vendor_dirs = array(
+			$composer->getConfig()->get( 'vendor-dir' ),
+			dirname( $composer->getConfig()->get( 'vendor-dir' ) ) . '/libs',
+		);
 
 		// Clean packages rules.
 		$rules = static::get_rules();
 
-		foreach ( $composer->getRepositoryManager()->getLocalRepository()->getPackages() as $package ) {
-			if ( ! $package instanceof BasePackage ) {
+		foreach ( $vendor_dirs as $vendor_dir ) {
+			if ( ! is_dir( $vendor_dir ) ) {
 				continue;
 			}
 
-			if ( ! array_key_exists( $package->getPrettyName(), $rules ) ) {
-				continue;
-			}
+			foreach ( $composer->getRepositoryManager()->getLocalRepository()->getPackages() as $package ) {
+				if ( ! $package instanceof BasePackage ) {
+					continue;
+				}
 
-			$package_name = explode( '/', $package->getPrettyName() );
-			$package_path = $libs_path . '/' . $package_name[1];
+				$name = $package->getPrettyName();
+				$explode_name = explode( '/', $name );
+				if ( ! array_key_exists( $name, $rules ) ) {
+					continue;
+				}
 
-			if ( is_dir( $package_path ) ) {
-				static::clean_package( $package_path, $rules[ $package->getPrettyName() ] );
+				if ( is_dir( $path = $vendor_dir . '/' . $name ) ) {
+					static::clean_package( $path, $rules[ $name ] );
+				} elseif ( is_dir( $path = $vendor_dir . '/' . $explode_name[1] ) ) {
+					static::clean_package( $path, $rules[ $name ] );
+				}
 			}
 		}
 	}
@@ -84,7 +95,7 @@ class Composer_Scripts {
 
 			'roomify/bat'       => array( $docs, $tests ),
 			'nesbot/carbon'     => array( $docs, $tests ),
-			'pelago/emogrifier' => array( $docs, $tests, 'Configuration' ),
+			'pelago/emogrifier' => array( $docs, $tests, 'Configuration', 'CODE_OF_CONDUCT.md' ),
 		);
 	}
 }
