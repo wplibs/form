@@ -28,9 +28,9 @@ class Menu_Page {
 	/**
 	 * An array submenu will be add to top-level menu.
 	 *
-	 * @var \Skeleton\Support\Priority_List
+	 * @var array
 	 */
-	protected $submenus;
+	protected $submenus = array();
 
 	/**
 	 * Create a top-level menu.
@@ -52,8 +52,6 @@ class Menu_Page {
 		));
 
 		$this->topmenu_args['menu_slug'] = $this->topmenu;
-
-		$this->submenus = new Priority_List;
 	}
 
 	/**
@@ -86,12 +84,11 @@ class Menu_Page {
 			'capability'  => 'manage_options',
 			'function'    => '',
 			'noheader'    => false,
+			'priority'    => isset( $submenu_args['priority'] ) ? (int) $submenu_args['priority'] : 10,
 		));
 
 		$submenu_args['menu_slug'] = $submenu_id;
-		$priority = isset( $submenu_args['priority'] ) ? (int) $submenu_args['priority'] : 10;
-
-		$this->submenus->insert( $submenu_id, $submenu_args, $priority );
+		$this->submenus[ $submenu_id ] = $submenu_args;
 	}
 
 	/**
