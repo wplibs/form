@@ -133,6 +133,9 @@ class CMB2_Hooks extends Service_Hooks {
 		if ( empty( $id_data['keys'] ) ) {
 			return $no_override;
 		}
+		
+		// NOTE: Maybe have bugs, just fixed for temp.
+		$id_keys = '[' . implode( '][', $id_data['keys'] ) . ']';
 
 		// Handler delete options.
 		if ( 'options-page' === $args['type'] || empty( $args['id'] ) ) {
@@ -144,7 +147,7 @@ class CMB2_Hooks extends Service_Hooks {
 		}
 
 		// Handler delete metadata.
-		$metadata = get_metadata( $args['type'], $args['id'], $id_data['base'], true );
+		$metadata = (array) get_metadata( $args['type'], $args['id'], $id_data['base'], true );
 
 		Multidimensional::delete( $metadata, $id_data['keys'] );
 
