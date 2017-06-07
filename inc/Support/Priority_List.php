@@ -150,8 +150,8 @@ class Priority_List implements \Iterator, \Countable {
 	 */
 	protected function compare( array $item1, array $item2 ) {
 		return ($item1['priority'] === $item2['priority'])
-			? ($item1['serial'] > $item2['serial'] ? -1 : 1) * $this->isLIFO
-			: ($item1['priority'] > $item2['priority'] ? -1 : 1);
+			? ($item1['serial'] > $item2['serial'] ? 1 : -1) * $this->isLIFO
+			: ($item1['priority'] > $item2['priority'] ? 1 : -1);
 	}
 
 	/**

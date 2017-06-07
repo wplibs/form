@@ -20,17 +20,4 @@ class Tabable_Stack extends Priority_List {
 
 		return $stack;
 	}
-
-	/**
-	 * Compare the priority of two items.
-	 *
-	 * @param  array $item1
-	 * @param  array $item2
-	 * @return int
-	 */
-	protected function compare( array $item1, array $item2 ) {
-		return ( $item1['priority'] === $item2['priority'] )
-			? ( $item1['serial']   > $item2['serial']   ? 1 : -1 ) * $this->isLIFO
-			: ( $item1['priority'] > $item2['priority'] ? 1 : -1 );
-	}
 }
