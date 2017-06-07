@@ -232,7 +232,7 @@ class CMB2_Render implements Render_Interface {
 			return;
 		}
 
-		return sprintf( '<li class="cmb2-tab %2$s" data-section-id="%1$s"><a href="#3$s" class="cmb2-tab-link" data-toggle="tab" data-target="#%3$s">%5$s %4$s</a></li>',
+		return sprintf( '<li class="cmb2-tab %2$s" data-section-id="%1$s"><a href="#%3$s" class="cmb2-tab-link" data-toggle="tab" data-target="#%3$s">%5$s %4$s</a></li>',
 			esc_attr( $section->id ),
 			esc_attr( $list_class ),
 			esc_attr( $section->uniqid() ),
