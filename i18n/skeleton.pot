@@ -233,6 +233,7 @@ msgstr ""
 msgid "%1$s submitted. <a target=\"_blank\" href=\"%2$s\">Preview %1$s</a>"
 msgstr ""
 
+#. translators: Publish box date format, see http://php.net/date.
 #: inc/Post_Type.php:209
 msgid "%1$s scheduled for: <strong>%2$s</strong>. <a target=\"_blank\" href=\"%3$s\">Preview %1$s</a>"
 msgstr ""
@@ -249,6 +250,7 @@ msgstr ""
 msgid "%1$s submitted."
 msgstr ""
 
+#. translators: Publish box date format, see http://php.net/date.
 #: inc/Post_Type.php:216
 msgid "%1$s scheduled for: <strong>%2$s</strong>."
 msgstr ""
@@ -348,7 +350,7 @@ msgstr ""
 msgid "Set field priority instead of."
 msgstr ""
 
-#: inc/CMB2/Scripts_Hooks.php:55
+#: inc/CMB2/Scripts_Hooks.php:58
 msgid "Are you sure you want to do this?"
 msgstr ""
 
@@ -390,16 +392,4 @@ msgstr ""
 
 #: inc/CMB2/Fields/Backups_Field.php:43
 msgid "Warning! This will overwrite all existing options, please proceed with caution!"
-msgstr ""
-
-#: inc/CMB2/Fields/Link_Color_Field.php:36
-msgid "Color"
-msgstr ""
-
-#: inc/CMB2/Fields/Link_Color_Field.php:37
-msgid "Hover color"
-msgstr ""
-
-#: inc/CMB2/Fields/Link_Color_Field.php:38
-msgid "Active color"
 msgstr ""
