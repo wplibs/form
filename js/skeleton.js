@@ -809,21 +809,65 @@ window.Skeleton = window.Skeleton || {};
 
       this.triggerTabs();
 
-      // console.log(this.services);
-
       this.initialized = true;
       this.emitter.emit('initialized', this);
     },
 
     triggerTabs: function triggerTabs() {
-      $('ul.cmb2-tabs .cmb2-tab-link').on('click', function () {
-        var tab_id = $(this).data('target');
+      var getStorageCurrentActive = function getStorageCurrentActive() {
+        var currentActive = sessionStorage.getItem('cmb-current-active');
 
-        $('ul.cmb2-tabs > .cmb2-tab').removeClass('active');
-        $('.cmb2-tab-pane').removeClass('active');
+        try {
+          currentActive = JSON.parse(currentActive);
+        } catch (e) {
+          sessionStorage.removeItem('cmb-current-active');
+        }
 
-        $(this).addClass('active');
-        $(tab_id).addClass('active');
+        return currentActive || {};
+      };
+
+      var setActiveTab = function setActiveTab($current, $metabox, metaboxID) {
+        // Do nothing if invalid metabox ID.
+        if (!metaboxID) return;
+
+        var targetID = $current.data('target');
+
+        // Remove prev active from tab-pane and tab-li.
+        $metabox.find('.cmb2-tab').removeClass('active');
+        $metabox.find('.cmb2-tab-pane').removeClass('active');
+
+        // Add active class to current.
+        $(targetID).addClass('active');
+        $current.closest('.cmb2-tab').addClass('active');
+
+        // Add current active to sessionStorage
+        if (window.sessionStorage) {
+          var currentActive = getStorageCurrentActive();
+
+          currentActive[metaboxID] = targetID;
+          sessionStorage.setItem('cmb-current-active', JSON.stringify(currentActive));
+        }
+      };
+
+      $('.cmb2-metabox').each(function () {
+        var $metabox = $(this);
+        var metaboxID = $metabox.attr('id').replace('cmb2-metabox-', '');
+
+        // First, active via sessionStorage.
+        if (window.sessionStorage) {
+          var currentActive = getStorageCurrentActive();
+
+          if (typeof currentActive[metaboxID] !== 'undefined') {
+            var activeTarget = currentActive[metaboxID];
+            setActiveTab($('[data-target="' + activeTarget + '"]', $metabox), $metabox, metaboxID);
+          }
+        }
+
+        // Active tab when click on nav-link.
+        $metabox.find('.cmb2-tab-link').on('click', function (e) {
+          e.preventDefault();
+          setActiveTab($(this), $metabox, metaboxID);
+        });
       });
     }
   });

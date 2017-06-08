@@ -211,8 +211,7 @@ class CMB2_Render implements Render_Interface {
 		}
 
 		return sprintf(
-			'<li class="cmb2-tab dropdown" data-panel-id="%1$s"><a href="#" class="dropdown-toggle" data-toggle="dropdown">%3$s %2$s</a><ul class="cmb2-sub-tabs dropdown-menu">%4$s</ul></li>',
-			esc_attr( $panel->id ),
+			'<li class="cmb2-panel"><a href="#" class="cmb2-panel-link">%2$s %1$s</a><ul class="cmb2-sub-tabs">%3$s</ul></li>',
 			esc_html( $panel->title ? $panel->title : $panel->id ),
 			$panel->build_icon(),
 			$sections_template
@@ -232,8 +231,7 @@ class CMB2_Render implements Render_Interface {
 			return;
 		}
 
-		return sprintf( '<li class="cmb2-tab %2$s" data-section-id="%1$s"><a href="#%3$s" class="cmb2-tab-link" data-toggle="tab" data-target="#%3$s">%5$s %4$s</a></li>',
-			esc_attr( $section->id ),
+		return sprintf( '<li class="cmb2-tab %1$s"><a href="#%2$s" class="cmb2-tab-link" data-target="#%2$s">%4$s %3$s</a></li>',
 			esc_attr( $list_class ),
 			esc_attr( $section->uniqid() ),
 			esc_html( $section->title ? $section->title : $section->id ),
