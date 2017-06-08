@@ -92,14 +92,16 @@ if ( ! function_exists( 'skeleton_display_field_errors' ) ) :
 	}
 endif;
 
-/**
- * //
- *
- * @param  CMB2_Field $field CMB2 Field instance.
- * @return void
- */
-function skeleton_render_field( CMB2_Field $field ) {
-	$field_type = new CMB2_Types( $field );
+if ( ! function_exists( 'skeleton_render_field' ) ) :
+	/**
+	 * //
+	 *
+	 * @param  CMB2_Field $field CMB2 Field instance.
+	 * @return void
+	 */
+	function skeleton_render_field( CMB2_Field $field ) {
+		$field_type = new CMB2_Types( $field );
 
-	$field_type->render();
-}
+		$field_type->render();
+	}
+endif;
