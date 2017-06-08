@@ -27,7 +27,7 @@
     },
     "autoload": {
         "files": [
-            "skeleton.php"
+            "inc/helpers.php"
         ],
         "psr-4": {
             "Skeleton\\": "inc/"
