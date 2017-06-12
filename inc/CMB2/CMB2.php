@@ -417,7 +417,7 @@ class CMB2 extends CMB2Base {
 		$value = isset( $this->data_to_save[ $id ] ) ? $this->data_to_save[ $id ] : null;
 
 		$validity = new WP_Error();
-		call_user_func_array( $callback, array( $validity, $value ) );
+		call_user_func_array( $callback, array( $validity, $value, $this ) );
 
 		if ( is_wp_error( $validity ) && $validity->errors ) {
 			if ( isset( $this->validate_errors[ $id ] ) ) {
