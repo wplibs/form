@@ -381,11 +381,13 @@ class CMB2 extends CMB2Base {
 
 		// Loop through fields and process saving data.
 		foreach ( $this->prop( 'fields' ) as $field_args ) {
+			$field_id = $field_args['id'];
+
 			// Fake $this->data_to_save for support multi-dimensional.
 			// If see a multidimensional-like, just add a parsed data with name
 			// same as field ID. So we can easy access to multi-dimensional data.
-			if ( strpos( $field_args['id'], '[' ) ) {
-				$this->data_to_save[ $field_args['id'] ] = Multidimensional::find( $this->data_to_save, $field_args['id'], '' );
+			if ( strpos( $field_id, '[' ) ) {
+				$this->data_to_save[ $field_id ] = Multidimensional::find( $this->data_to_save, $field_id, '' );
 			}
 
 			// Validate field by callback if need.
@@ -394,13 +396,13 @@ class CMB2 extends CMB2Base {
 			}
 
 			// Only process field if not seeing any errors.
-			if ( ! $validator->has_errors( $field_args['id'] ) ) {
+			if ( empty( $this->validate_errors[ $field_id ] ) ) {
 				$this->process_field( $field_args );
 			}
 		}
 
 		// Set errors message to transient if fails.
-		if ( ! $validated ) {
+		if ( $this->validate_errors ) {
 			set_transient( $this->transient_id( '_errors' ), $this->validate_errors, 10 );
 		}
 	}
