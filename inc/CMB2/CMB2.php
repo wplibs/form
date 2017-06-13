@@ -318,8 +318,14 @@ class CMB2 extends CMB2Base {
 			}
 
 			if ( ! empty( $args['validate'] ) ) {
-				$ruleset[ $args['id'] ] = $args['validate'];
-				$labels[ $args['id'] ] = isset( $args['name'] ) ? $args['name'] : $args['id'];
+				$id = $args['id'];
+				$ruleset[ $id ] = $args['validate'];
+
+				if ( isset( $args['validate_label'] ) ) {
+					$labels[ $id ] = $args['validate_label'];
+				} else {
+					$labels[ $id ] = isset( $args['name'] ) ? $args['name'] : $id;
+				}
 			}
 		}
 
