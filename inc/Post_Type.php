@@ -301,8 +301,8 @@ class Post_Type {
 	 *
 	 * @access private
 	 *
-	 * @param array $column  Array of registered column names.
-	 * @param int   $post_id Current post ID.
+	 * @param string $column  The name of the column to display.
+	 * @param int    $post_id Current post ID.
 	 */
 	public function columns_display( $column, $post_id ) {}
 
@@ -310,7 +310,6 @@ class Post_Type {
 	 * Add meta boxes to this post type.
 	 *
 	 * @see $this->create_metabox()
-	 * @see Skeleton\Metabox
 	 */
 	public function register_metaboxes() {}
 
