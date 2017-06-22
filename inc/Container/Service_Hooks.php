@@ -17,7 +17,7 @@ abstract class Service_Hooks {
 	 *
 	 * @var Container
 	 */
-	protected $container;
+	public $container;
 
 	/**
 	 * Instantiate the service provider.

@@ -63,7 +63,12 @@ class Container extends Pimple_Container {
 			return $this;
 		}
 
-		// Register hook.
+		// Binding this container into the hook.
+		if ( is_null( $hook->container ) ) {
+			$hook->container = $this;
+		}
+
+		// Register the hook.
 		$hook->register( $this );
 		foreach ( $values as $key => $value ) {
 			$this[ $key ] = $value;
@@ -94,7 +99,7 @@ class Container extends Pimple_Container {
 	 */
 	public function boot() {
 		// Loop through service hooks and call `init` method.
-		foreach ( $this->service_hooks as $hook ) {
+		foreach ( array_reverse( $this->service_hooks ) as $hook ) {
 			$this->init_service_hooks( $hook );
 		}
 
