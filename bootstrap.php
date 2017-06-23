@@ -12,6 +12,3 @@ skeleton_psr4_autoloader(array(
 	'Valitron\\' => trailingslashit( __DIR__ ) . 'libs/valitron/src/Valitron/',
 	'Skeleton\\' => trailingslashit( __DIR__ ) . 'inc/',
 ));
-
-// Make Skeleton\Skeleton as Skeleton alias.
-class_alias( 'Skeleton\\Skeleton', 'Skeleton' );
