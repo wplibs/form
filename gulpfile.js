@@ -66,7 +66,6 @@ gulp.task('sass', function () {
     .pipe(bs.stream({ match: '**/*.css' }));
 });
 
-
 gulp.task('css:minify', ['sass'], function () {
   return gulp.src(['css/*.css', '!css/*.min.css'])
     .pipe(plumber({ errorHandler: handleErrors }))
@@ -136,7 +135,7 @@ gulp.task('clean', function () {
 });
 
 gulp.task('build', function (callback) {
-  series('clean', ['sass', 'js:minify'], 'wp-pot', callback);
+  series('clean', ['css:minify', 'js:minify'], 'wp-pot', callback);
 });
 
 gulp.task('default', function (callback) {
