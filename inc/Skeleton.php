@@ -2,18 +2,14 @@
 
 namespace Skeleton;
 
-use Skeleton\Taxonomy;
-use Skeleton\Container\Container;
-use Skeleton\Post_Type;
 use Skeleton\CMB2\CMB2;
-use Skeleton\CMB2\Scripts_Hooks;
 use Skeleton\CMB2\CMB2_Hooks;
-use Skeleton\Assets\Assets_Hooks;
+use Skeleton\CMB2\Scripts_Hooks;
 use Skeleton\Walker\Walker_Hooks;
-use Skeleton\Support\Autoload;
 use Skeleton\Webfonts\Webfonts_Hooks;
 use Skeleton\Iconfonts\Iconfonts_Hooks;
 use Skeleton\Support\Multidimensional;
+use Skeleton\Container\Container;
 
 final class Skeleton extends Container {
 	const VERSION = '0.1.0';
@@ -78,6 +74,7 @@ final class Skeleton extends Container {
 		$this->trigger( new Scripts_Hooks );
 		$this->trigger( new Webfonts_Hooks );
 		$this->trigger( new Walker_Hooks );
+		$this->trigger( new Iconfonts_Hooks );
 	}
 
 	/**
