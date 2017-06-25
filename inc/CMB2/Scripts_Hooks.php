@@ -39,8 +39,6 @@ class Scripts_Hooks extends Service_Hooks {
 		wp_register_script( 'ace-editor', '//cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js', array(), '1.2.6', true );
 		wp_register_script( 'ace-ext-language_tools', '//cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ext-language_tools.js', array( 'ace-editor' ), '1.2.6', true );
 
-		wp_register_script( 'backbone.stickit.js', $skeleton_url . 'js/vendor/backbone.stickit.js', array( 'backbone' ), '0.9.2' );
-
 		wp_register_style( 'jquery-ui-slider-pips', $skeleton_url . 'css/jquery-ui-slider-pips.css', array(), '1.11.4' );
 		wp_register_script( 'jquery-ui-slider-pips', $skeleton_url . 'js/plugins/jquery-ui-slider-pips.min.js', array( 'jquery-ui-slider' ), '1.11.4', true );
 		wp_register_script( 'wp-color-picker-alpha', $skeleton_url . 'js/plugins/wp-color-picker-alpha.min.js', array( 'wp-color-picker' ), '1.2.2', true );
@@ -50,7 +48,6 @@ class Scripts_Hooks extends Service_Hooks {
 
 		// Enqueue Skeleton.
 		wp_enqueue_script( 'skeleton' );
-		wp_enqueue_script( 'backbone.stickit.js' );
 
 		wp_localize_script( 'skeleton', 'Skeleton', array(
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
