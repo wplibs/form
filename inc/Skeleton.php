@@ -74,13 +74,10 @@ final class Skeleton extends Container {
 		$this['public_url']  = trailingslashit( $this['url'] . 'public' );
 
 		// Register core framework hooks.
-		$this->trigger( new CMB2_Hooks( $this ) );
-		$this->trigger( new Scripts_Hooks( $this ) );
-		$this->trigger( new Webfonts_Hooks( $this ) );
-		$this->trigger( new Walker_Hooks( $this ) );
-
-		$this->bind( 'request', new Http\Request( $this ) );
-		$this->bind( 'response', new Http\Response( $this ) );
+		$this->trigger( new CMB2_Hooks );
+		$this->trigger( new Scripts_Hooks );
+		$this->trigger( new Webfonts_Hooks );
+		$this->trigger( new Walker_Hooks );
 	}
 
 	/**
