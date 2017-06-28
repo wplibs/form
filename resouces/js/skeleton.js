@@ -115,7 +115,7 @@ window.Skeleton = window.Skeleton || {};
         }
 
         // Active tab when click on nav-link.
-        $metabox.find('.cmb2-tab-link').on('click', function(e) {
+        $metabox.find('.cmb2-tab-link, .cmb2-panel-link').on('click', function(e) {
           e.preventDefault();
           setActiveTab($(this), $metabox, metaboxID);
         });
