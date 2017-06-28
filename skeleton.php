@@ -26,7 +26,7 @@ require_once trailingslashit( __DIR__ ) . 'bootstrap.php';
 require_once trailingslashit( __DIR__ ) . 'libs/cmb2/init.php';
 
 // Now boot the Skeleton after WP-init.
-if ( ! defined( 'SKELETON_LOADED' ) ) {
+if ( ! defined( 'AWETHEMES_SKELETON_LOADED' ) ) {
 	$skeleton = new Skeleton\Skeleton;
 
 	/**
@@ -45,5 +45,5 @@ if ( ! defined( 'SKELETON_LOADED' ) ) {
 	add_action( 'cmb2_init', array( $skeleton, 'run' ), 5 );
 
 	// Declare Skeleton is loaded.
-	define( 'SKELETON_LOADED', true );
+	define( 'AWETHEMES_SKELETON_LOADED', true );
 }
