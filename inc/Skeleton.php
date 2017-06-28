@@ -12,7 +12,7 @@ use Skeleton\Support\Multidimensional;
 use Skeleton\Container\Container;
 
 final class Skeleton extends Container {
-	const VERSION = '0.2.0';
+	const VERSION = '0.2.2';
 
 	/**
 	 * All of the custom post types.
