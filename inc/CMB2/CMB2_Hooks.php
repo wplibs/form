@@ -89,7 +89,7 @@ class CMB2_Hooks extends Service_Hooks {
 
 		// Options page updating...
 		if ( 'options-page' === $args['type'] || empty( $args['id'] ) ) {
-			$options = cmb2_options( $args['id'] )->get( $id_data['base'], array() );
+			$options = (array) cmb2_options( $args['id'] )->get( $id_data['base'], array() );
 			$repace_value = $args['value'];
 
 			if ( ! $args['single'] ) {
@@ -150,7 +150,7 @@ class CMB2_Hooks extends Service_Hooks {
 
 		// Handler delete options.
 		if ( 'options-page' === $args['type'] || empty( $args['id'] ) ) {
-			$options = cmb2_options( $args['id'] )->get( $id_data['base'], array() );
+			$options = (array) cmb2_options( $args['id'] )->get( $id_data['base'], array() );
 
 			Multidimensional::delete( $options, $delete_key );
 
@@ -184,7 +184,7 @@ class CMB2_Hooks extends Service_Hooks {
 		}
 
 		if ( 'options-page' === $args['type'] ) {
-			$metadata = cmb2_options( $args['id'] )->get( $id_data['base'] );
+			$metadata = (array) cmb2_options( $args['id'] )->get( $id_data['base'] );
 		} else {
 			// NOTE: Maybe have bugs in this case, see: CMB2_Field::get_data().
 			$metadata = get_metadata( $args['type'], $args['id'], $id_data['base'], true );
