@@ -354,13 +354,13 @@ class CMB2 extends CMB2Base {
 	 * Prepare fields validate.
 	 */
 	protected function prepare_validate() {
-		$transient_name = $this->transient_id( '_errors' );
+		$errors = get_transient( $this->transient_id( '_errors' ) );
 
-		if ( $errors = get_transient( $transient_name ) ) {
+		if ( $errors ) {
 			$this->validate_errors = $errors;
 		}
 
-		delete_transient( $transient_name );
+		delete_transient( $this->transient_id( '_errors' ) );
 	}
 
 	/**
