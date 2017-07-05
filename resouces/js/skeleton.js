@@ -83,7 +83,7 @@ window.Skeleton = window.Skeleton || {};
         $metabox.find('.cmb2-tab, .cmb2-panel').removeClass('active');
 
         // Add active class to current.
-        $(targetID).addClass('active');
+        $(targetID, $metabox).addClass('active');
         $current.closest('.cmb2-tab').addClass('active');
 
         // Active panel.
@@ -171,6 +171,11 @@ window.Skeleton = window.Skeleton || {};
   $(function() {
     window.Skeleton.init();
     window.Skeleton.deps();
+
+    // Trigger reload JS when widget changed.
+    $(document).on('widget-added widget-updated', function( event, $widget ) {
+      window.Skeleton.triggerTabs();
+    });
   });
 
 })(jQuery, window.Skeleton);

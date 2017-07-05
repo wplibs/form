@@ -114,3 +114,8 @@
     padding: 0;
   }
 }
+
+.widget-content .cmb-row input + label {
+  font-size: 12px;
+  vertical-align: top;
+}
