@@ -240,10 +240,8 @@ class Admin_Page extends CMB2\CMB2 {
 	 * @access private
 	 */
 	public function enqueue_script() {
+		CMB2_hookup::enqueue_cmb_js();
 		CMB2_hookup::enqueue_cmb_css();
-
-		wp_enqueue_style( 'skeleton-cmb2' );
-		wp_enqueue_script( 'skeleton-cmb2' );
 	}
 
 	/**
