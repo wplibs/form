@@ -57,6 +57,19 @@ class CMB2 extends CMB2Base {
 	}
 
 	/**
+	 * Generate a unique nonce for each registered meta_box.
+	 *
+	 * @return string
+	 */
+	public function nonce() {
+		if ( ! $this->generated_nonce ) {
+			$this->generated_nonce = sanitize_html_class( 'nonce_' . $this->cmb_id );
+		}
+
+		return $this->generated_nonce;
+	}
+
+	/**
 	 * Add a field to the metabox.
 	 *
 	 * @param  array $field      Metabox field config array.
@@ -446,12 +459,24 @@ class CMB2 extends CMB2Base {
 		call_user_func_array( $callback, array( $validity, $value, $this ) );
 
 		if ( is_wp_error( $validity ) && $validity->errors ) {
-			if ( isset( $this->validate_errors[ $id ] ) ) {
-				$this->validate_errors[ $id ] = array_merge( $this->validate_errors[ $id ], $validity->get_error_messages() );
-			} else {
-				$this->validate_errors[ $id ] = $validity->get_error_messages();
-			}
+			$this->add_validation_error( $id, $validity->get_error_messages() );
 		}
+	}
+
+	/**
+	 * Add a validation error.
+	 *
+	 * @param string $id            Field ID.
+	 * @param string $error_message Error message.
+	 */
+	public function add_validation_error( $id, $error_message ) {
+		if ( isset( $this->validate_errors[ $id ] ) ) {
+			$this->validate_errors[ $id ] = array_merge( $this->validate_errors[ $id ], $error_message );
+		} else {
+			$this->validate_errors[ $id ] = $error_message;
+		}
+
+		return $this;
 	}
 
 	/**
