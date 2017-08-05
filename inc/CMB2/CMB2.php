@@ -386,12 +386,21 @@ class CMB2 extends CMB2Base {
 	}
 
 	/**
-	 * Return true if get validation errors.
+	 * Determine if the data passes the validation.
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
-	public function is_errors() {
+	public function passes() {
 		return ! $this->get_errors();
+	}
+
+	/**
+	 * Determine if the data fails the validation.
+	 *
+	 * @return bool
+	 */
+	public function fails() {
+		return ! $this->passes();
 	}
 
 	/**
