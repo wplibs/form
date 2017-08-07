@@ -327,11 +327,11 @@ class CMB2 extends CMB2Base {
 	/**
 	 * Return a unique name for transient.
 	 *
-	 * @param  string $extra Optional extra name.
+	 * @param  string $append Optional append string.
 	 * @return string
 	 */
-	public function transient_id( $extra = '' ) {
-		return $this->cmb_id . '::' . $this->object_type() . '::' . $this->object_id() . $extra;
+	public function transient_id( $append = '' ) {
+		return $this->cmb_id . '_' . $this->object_type() . '_' . $this->object_id() . $append;
 	}
 
 	/**
@@ -448,7 +448,7 @@ class CMB2 extends CMB2Base {
 		}
 
 		// Set errors message to transient if fails.
-		if ( $this->validate_errors ) {
+		if ( $this->fails() ) {
 			set_transient( $this->transient_id( '_errors' ), $this->validate_errors, 10 );
 		}
 	}
