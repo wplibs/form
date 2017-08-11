@@ -19,6 +19,7 @@ if ( file_exists( trailingslashit( __DIR__ ) . 'vendor/webdevstudios/cmb2/init.p
 	throw new RuntimeException( 'Unable to locate the CMB2' );
 }
 
+// Include helpers.
 require_once trailingslashit( __DIR__ ) . 'inc/helpers.php';
 
 // Autoload the Skeleton.

@@ -54,6 +54,10 @@ if ( ! function_exists( 'skeleton_psr4_autoloader' ) ) :
 	 * @return void
 	 */
 	function skeleton_psr4_autoloader( $namespace, $base_dir = null ) {
+		if ( ! class_exists( 'Skeleton\\Support\\Autoload', false ) ) {
+			require_once trailingslashit( __DIR__ ) . 'Support/Autoload.php';
+		}
+
 		$loader = new Autoload;
 
 		if ( is_string( $namespace ) && $base_dir ) {
