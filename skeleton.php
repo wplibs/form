@@ -12,15 +12,23 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-// First, load the bootstrap file.
-require_once trailingslashit( __DIR__ ) . 'bootstrap.php';
-
-// Next, load CMB2. Don't worry about duplicate,
-// CMB2 already take care about that.
-require_once trailingslashit( __DIR__ ) . 'libs/cmb2/init.php';
+// Try locate the CMB2.
+if ( file_exists( trailingslashit( __DIR__ ) . 'vendor/cmb2/init.php' ) ) {
+	require_once trailingslashit( __DIR__ ) . 'vendor/cmb2/init.php';
+} elseif ( file_exists( __DIR__ . '/../../webdevstudios/cmb2/init.php' ) ) {
+	require_once __DIR__ . '/../../webdevstudios/cmb2/init.php';
+} else {
+	trigger_error( esc_html__( 'Unable to locate the CMB2.', 'skeleton' ) );
+}
 
 // Now boot the Skeleton after WP-init.
 if ( ! defined( 'AWETHEMES_SKELETON_LOADED' ) ) {
+	require_once trailingslashit( __DIR__ ) . 'inc/helpers.php';
+
+	if ( ! class_exists( 'Skeleton\\Support\\Autoload', false ) ) {
+		require_once trailingslashit( __DIR__ ) . 'inc/Support/Autoload.php';
+	}
+
 	$skeleton = new Skeleton\Skeleton;
 
 	/**
