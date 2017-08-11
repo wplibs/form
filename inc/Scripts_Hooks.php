@@ -1,6 +1,5 @@
 <?php
-
-namespace Skeleton\CMB2;
+namespace Skeleton;
 
 use Skeleton\Container\Service_Hooks;
 
@@ -61,7 +60,9 @@ class Scripts_Hooks extends Service_Hooks {
 			),
 		) );
 
-		$icon_manager = skeleton( 'iconfonts_manager');
+		// Font Icons.
+		$icon_manager = skeleton( 'iconfonts_manager' );
+
 		foreach ( $icon_manager->all() as $iconpack ) {
 			$is_registerd = wp_style_is( $iconpack->stylesheet_id, 'registered' );
 

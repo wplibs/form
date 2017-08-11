@@ -1,7 +1,9 @@
 <?php
-namespace Skeleton\Core\Admin;
+namespace Skeleton;
 
-use Skeleton\Core\Backups;
+use Skeleton\CMB2\CMB2;
+use Skeleton\CMB2\Backups;
+use Skeleton\Support\Utils;
 use Skeleton\Container\Service_Hooks;
 
 class Ajax_Hooks extends Service_Hooks {
@@ -9,20 +11,13 @@ class Ajax_Hooks extends Service_Hooks {
 	 * Init service provider.
 	 *
 	 * This method will be run after container booted.
+	 *
+	 * @param Container $container Container instance.
 	 */
-	public function init() {
-		add_action( 'wp_ajax_skeleton/ajax_save', array( $this, 'ajax_save' ) );
-		add_action( 'wp_ajax_skeleton/reset_cmb2', array( $this, 'ajax_reset_cmb2' ) );
-		add_action( 'wp_ajax_skeleton/backup/export', array( $this, 'ajax_export_backup' ) );
-		add_action( 'wp_ajax_skeleton/backup/restore', array( $this, 'ajax_restore_backup' ) );
-	}
-
-	public function ajax_save() {
-		$cmb2 = $this->get_cmb2_from_request();
-
-		$cmb2->save_fields( 0, '', $this->request( 'data' ) );
-
-		exit( 'true' );
+	public function init( $container ) {
+		add_action( 'wp_ajax_skeleton_export_backup', array( $this, 'ajax_export_backup' ) );
+		add_action( 'wp_ajax_skeleton_restore_backup', array( $this, 'ajax_restore_backup' ) );
+		add_action( 'wp_ajax_skeleton_reset_cmb2', array( $this, 'ajax_reset_cmb2' ) );
 	}
 
 	/**
@@ -31,7 +26,7 @@ class Ajax_Hooks extends Service_Hooks {
 	public function ajax_export_backup() {
 		$backups = new Backups( $this->get_cmb2_from_request() );
 
-		Utils::header_send_download(
+		Utils::send_download(
 			$backups->backup(),
 			$backups->get_backup_id() . '-' . date_i18n( 'mdY' ) . '.txt'
 		);
@@ -42,15 +37,17 @@ class Ajax_Hooks extends Service_Hooks {
 	 */
 	public function ajax_restore_backup() {
 		$backups = new Backups( $this->get_cmb2_from_request() );
-		$restored = $backups->restore( $this->request( 'backup_code' ) );
 
 		ob_clean();
+		$restored = $backups->restore( $this->request( 'backup_code' ) );
 
-		if ( $restored instanceof \WP_Error ) {
+		if ( is_wp_error( $restored ) ) {
 			wp_send_json_error( $restored );
 		}
 
-		wp_send_json_success( array( 'message' => 'Successfully restored settings.' ) );
+		wp_send_json_success( array(
+			'message' => 'Successfully restored settings',
+		));
 	}
 
 	/**
@@ -59,9 +56,29 @@ class Ajax_Hooks extends Service_Hooks {
 	public function ajax_reset_cmb2() {
 		$cmb2 = $this->get_cmb2_from_request();
 
+		// Remove all validate of fields.
+		if ( $cmb2 instanceof CMB2 ) {
+			$fields = $cmb2->prop( 'fields' );
+
+			foreach ( $fields as &$args ) {
+				$args['validate'] = null;
+				$args['validate_cb'] = null;
+			}
+
+			$cmb2->set_prop( 'fields', $fields );
+		}
+
+		// Save the CMB2 with empty array.
 		$cmb2->save_fields( 0, '', array() );
 
-		wp_send_json_success( array( 'message' => 'Successfully reset settings.' ) );
+		// Remove transient errors.
+		if ( $cmb2 instanceof CMB2 ) {
+			delete_transient( $cmb2->transient_id( '_errors' ) );
+		}
+
+		wp_send_json_success(array(
+			'message' => 'Successfully reset settings',
+		));
 	}
 
 	/**
@@ -70,7 +87,11 @@ class Ajax_Hooks extends Service_Hooks {
 	 * @return \CMB2
 	 */
 	protected function get_cmb2_from_request() {
-		$cmb2 = cmb2_get_metabox( $this->request( 'cmb2' ), $this->request( 'object_id' ), $this->request( 'object_type' ) );
+		$cmb2 = cmb2_get_metabox(
+			$this->request( 'id' ),
+			$this->request( 'obj_id' ),
+			$this->request( 'obj_type' )
+		);
 
 		if ( ! $cmb2 instanceof \CMB2 ) {
 			wp_send_json_error( new \WP_Error( 'error', esc_html__( 'Invalid CMB2 ID.', 'skeleton' ) ) );

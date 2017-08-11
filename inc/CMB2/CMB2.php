@@ -7,13 +7,12 @@ use Skeleton\Skeleton;
 use Skeleton\Support\Validator;
 use Skeleton\Support\Multidimensional;
 use Skeleton\CMB2\Render\CMB2_Render;
-use Skeleton\CMB2\Render\Render_Interface;
 
 class CMB2 extends CMB2Base {
 	/**
 	 * CMB2 render instance.
 	 *
-	 * @var Render_Interface
+	 * @var CMB2_Render
 	 */
 	protected $render;
 
@@ -222,10 +221,10 @@ class CMB2 extends CMB2Base {
 	/**
 	 * Set tabable arguments or run a callback.
 	 *
-	 * @param Tabable_Interface $tabable Tabable object.
-	 * @param array|callable    $setting Tabable arguments or a callable.
+	 * @param Tabable        $tabable Tabable object.
+	 * @param array|callable $setting Tabable arguments or a callable.
 	 */
-	protected function _set_tabable( Tabable_Interface $tabable, $setting ) {
+	protected function _set_tabable( Tabable $tabable, $setting ) {
 		if ( empty( $setting ) ) {
 			return $tabable;
 		}
@@ -580,9 +579,9 @@ class CMB2 extends CMB2Base {
 	/**
 	 * Set CMB2 render.
 	 *
-	 * @param Render_Interface $render CMB2 render instance.
+	 * @param CMB2_Render $render CMB2 render instance.
 	 */
-	public function set_render( Render_Interface $render ) {
+	public function set_render( CMB2_Render $render ) {
 		$this->render = $render;
 	}
 

@@ -7,7 +7,7 @@ use Skeleton\CMB2\Panel;
 use Skeleton\CMB2\Section;
 use Skeleton\CMB2\Tabable;
 
-class CMB2_Render implements Render_Interface {
+class CMB2_Render {
 	/**
 	 * CMB2 Instance.
 	 *

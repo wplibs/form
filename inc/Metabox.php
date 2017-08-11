@@ -1,11 +1,6 @@
 <?php
 namespace Skeleton;
 
-use CMB2_Boxes;
-use LogicException;
-use Skeleton\CMB2\Builder\Display_Builder;
-use Skeleton\CMB2\Builder\Term_Display_Builder;
-
 /**
  * Metabox based on top CMB2.
  *
@@ -22,8 +17,8 @@ class Metabox extends CMB2\CMB2 {
 	public function __construct( $cmb_id, $args = array() ) {
 		$args['id'] = $cmb_id;
 
-		if ( CMB2_Boxes::get( $args['id'] ) ) {
-			throw new LogicException( "A metabox with id `{$args['id']}` has been registered." );
+		if ( \CMB2_Boxes::get( $args['id'] ) ) {
+			throw new \LogicException( "A metabox with id `{$args['id']}` has been registered." );
 		}
 
 		parent::__construct( $args );
@@ -172,7 +167,7 @@ class Metabox extends CMB2\CMB2 {
 	 * CMB2 valid object types: user, comment, post, page and {custom-post-types}
 	 *
 	 * @param  string $object_types Object types.
-	 * @return Display_Builder
+	 * @return $this
 	 */
 	public function show_on( $object_types ) {
 		// Set object_types exclude `term` object type.
@@ -181,14 +176,14 @@ class Metabox extends CMB2\CMB2 {
 
 		$this->set_object_types( $object_types );
 
-		return new Display_Builder( $this );
+		return $this;
 	}
 
 	/**
 	 * Setting metabox display in term.
 	 *
 	 * @param  string|array $taxonomies A list of taxonomies will be show.
-	 * @return Term_Display_Builder
+	 * @return $this
 	 */
 	public function show_on_term( $taxonomies ) {
 		if ( is_string( $taxonomies ) ) {
@@ -198,7 +193,7 @@ class Metabox extends CMB2\CMB2 {
 		$this->add_object_types( 'term' );
 		$this->set_prop( 'taxonomies', $taxonomies );
 
-		return new Term_Display_Builder( $this );
+		return $this;
 	}
 
 	/**

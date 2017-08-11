@@ -4,7 +4,7 @@ namespace Skeleton\CMB2;
 use Skeleton\Container\Container;
 use Skeleton\CMB2\Fields\Field_Interface;
 
-class CMB2_Manager {
+class Manager {
 	/**
 	 * Skeleton Container instance class.
 	 *
@@ -17,17 +17,17 @@ class CMB2_Manager {
 	 *
 	 * @var array
 	 */
-	protected $registered_fields;
+	protected $fields;
 
 	/**
-	 * Init CMB2_Manager
+	 * Init the manager
 	 *
 	 * @param Container $container
 	 */
 	public function __construct( Container $container ) {
 		$this->container = $container;
 
-		$this->registered_fields = apply_filters( 'skeleton/cmb2/fields', array(
+		$this->fields = apply_filters( 'skeleton/cmb2/fields', array(
 			'icon'              => 'Skeleton\CMB2\Fields\Icon_Field',
 			'range'             => 'Skeleton\CMB2\Fields\Range_Field',
 			'toggle'            => 'Skeleton\CMB2\Fields\Toggle_Field',
@@ -52,11 +52,11 @@ class CMB2_Manager {
 	 * @return bool
 	 */
 	public function register_field( $name, $class_name, $force = false ) {
-		if ( ! $force && $this->has_registered_field( $name ) ) {
+		if ( ! $force && $this->has_field( $name ) ) {
 			return false;
 		}
 
-		$this->registered_fields[ $name ] = $class_name;
+		$this->fields[ $name ] = $class_name;
 		return true;
 	}
 
@@ -66,8 +66,8 @@ class CMB2_Manager {
 	 * @param  string $name Field name.
 	 * @return boolean
 	 */
-	public function has_registered_field( $name ) {
-		return isset( $this->registered_fields[ $name ] );
+	public function has_field( $name ) {
+		return isset( $this->fields[ $name ] );
 	}
 
 	/**
@@ -75,15 +75,15 @@ class CMB2_Manager {
 	 *
 	 * @return array
 	 */
-	public function get_registered_fields() {
-		return $this->registered_fields;
+	public function get_fields() {
+		return $this->fields;
 	}
 
 	/**
 	 * Hooks custom fields to CMB2.
 	 */
 	public function hooks_fields() {
-		foreach ( $this->registered_fields as $type => $class ) {
+		foreach ( $this->fields as $type => $class ) {
 			$field = new $class( $this->container, $type );
 			if ( ! $field instanceof Field_Interface ) {
 				return;

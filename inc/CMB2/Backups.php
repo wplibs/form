@@ -1,7 +1,7 @@
 <?php
 namespace Skeleton\CMB2;
 
-use Skeleton\Page_Settings;
+use Skeleton\Admin_Page;
 use Skeleton\Support\Encrypter;
 
 class Backups {
@@ -130,7 +130,7 @@ class Backups {
 	 */
 	public function get_export_url() {
 		$link = sprintf(
-			'admin-ajax.php?action=skeleton/backup/export&cmb2=%1$s&object_id=%2$s&object_type=%3$s',
+			'admin-ajax.php?action=skeleton_export_backup&id=%1$s&obj_id=%2$s&obj_type=%3$s',
 			$this->cmb_instance->cmb_id,
 			$this->object_id,
 			$this->object_type
@@ -145,15 +145,15 @@ class Backups {
 	 * @return string
 	 */
 	public function get_backup_id() {
-		if ( $this->cmb_instance instanceof Page_Settings ) {
+		if ( $this->cmb_instance instanceof Admin_Page ) {
 			$id = $this->cmb_instance->cmb_id;
 		} else {
 			$id = $this->cmb_instance->cmb_id . '-' . $this->object_id . '-' . $this->object_type;
 		}
 
-		$id = apply_filters( 'skeleton/backups/backup_id', $id, $this );
+		$id = str_replace( array( '\\', '/', '_' ), '-', $id );
 
-		return str_replace( array( '\\', '/' ), '-', $id );
+		return apply_filters( 'skeleton/get_backup_id', $id, $this );
 	}
 
 	/**
