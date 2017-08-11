@@ -18,3 +18,6 @@ if ( file_exists( trailingslashit( __DIR__ ) . 'vendor/webdevstudios/cmb2/init.p
 } else {
 	throw new RuntimeException( 'Unable to locate the CMB2' );
 }
+
+// Autoload the Skeleton.
+skeleton_psr4_autoloader( 'Skeleton\\', trailingslashit( __DIR__ ) . 'inc/' );
