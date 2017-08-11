@@ -141,6 +141,10 @@ msgstr ""
 msgid "One or more error occurred."
 msgstr ""
 
+#: inc/Ajax_Hooks.php:97
+msgid "Invalid CMB2 ID."
+msgstr ""
+
 #: inc/Post_Type.php:82
 msgid "`%s` post type has never been registered before."
 msgstr ""
@@ -294,6 +298,10 @@ msgstr[1] ""
 msgid "%s Title"
 msgstr ""
 
+#: inc/Scripts_Hooks.php:59
+msgid "Are you sure you want to do this?"
+msgstr ""
+
 #: inc/Taxonomy.php:100
 msgid "`%s` taxonomy has never been registered before."
 msgstr ""
@@ -334,10 +342,6 @@ msgstr ""
 msgid "Choose from the most used %s"
 msgstr ""
 
-#: inc/CMB2/Ajax_Hooks.php:76
-msgid "Invalid CMB2 ID."
-msgstr ""
-
 #: inc/CMB2/Backups.php:77
 msgid "Nothing to backup."
 msgstr ""
@@ -346,12 +350,8 @@ msgstr ""
 msgid "Invalid payload received."
 msgstr ""
 
-#: inc/CMB2/CMB2.php:68
+#: inc/CMB2/CMB2.php:80
 msgid "Set field priority instead of."
-msgstr ""
-
-#: inc/CMB2/Scripts_Hooks.php:59
-msgid "Are you sure you want to do this?"
 msgstr ""
 
 #: inc/Iconfonts/Iconfonts_Hooks.php:71
@@ -382,31 +382,31 @@ msgstr ""
 msgid "Google Fonts"
 msgstr ""
 
-#: inc/CMB2/Fields/Backups_Field.php:26
+#: inc/CMB2/Fields/Backups_Field.php:33
 msgid "Backup"
 msgstr ""
 
-#: inc/CMB2/Fields/Backups_Field.php:27
-msgid "Here you can copy/<a href=\"%s\" target=\"_blank\">download</a> current settings. Keep this safe as you can use it as a backup should anything go wrong."
+#: inc/CMB2/Fields/Backups_Field.php:34
+msgid "Here you can copy / <a href=\"%s\" target=\"_blank\">download</a> current settings. Keep this safe as you can use it as a backup should anything go wrong."
 msgstr ""
 
-#: inc/CMB2/Fields/Backups_Field.php:34
+#: inc/CMB2/Fields/Backups_Field.php:41
 msgid "Restore a backup"
 msgstr ""
 
-#: inc/CMB2/Fields/Backups_Field.php:35
+#: inc/CMB2/Fields/Backups_Field.php:42
 msgid "Copy-paste your backup string here:"
 msgstr ""
 
-#: inc/CMB2/Fields/Backups_Field.php:39
+#: inc/CMB2/Fields/Backups_Field.php:46
 msgid "Backup Now"
 msgstr ""
 
-#: inc/CMB2/Fields/Backups_Field.php:40
+#: inc/CMB2/Fields/Backups_Field.php:47
 msgid "or <a href=\"%s\" class=\"cmb2-reset-backup\">reset</a> to defaults."
 msgstr ""
 
-#: inc/CMB2/Fields/Backups_Field.php:43
+#: inc/CMB2/Fields/Backups_Field.php:50
 msgid "Warning! This will overwrite all existing options, please proceed with caution!"
 msgstr ""
 
