@@ -6,23 +6,21 @@
 
   <!-- Exclude patterns -->
   <exclude-pattern>tests/*</exclude-pattern>
-  <exclude-pattern>libs/*</exclude-pattern>
   <exclude-pattern>vendor/*</exclude-pattern>
 
   <!-- Run against the PHPCompatibility ruleset -->
-  <rule ref="PHPCompatibility">
-  </rule>
+  <rule ref="PHPCompatibility" />
 
   <!-- Run against a second ruleset -->
   <rule ref="WordPress-Extra" />
 
   <rule ref="WordPress-Docs">
     <exclude name="Generic.Files.LowercasedFilename.NotFound" />
+    <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
     <exclude name="Squiz.Commenting.FileComment.Missing" />
     <exclude name="Squiz.Commenting.ClassComment.Missing" />
     <exclude name="Squiz.Commenting.FunctionCommentThrowTag.Missing" />
-    <exclude name="Squiz.Commenting.FunctionComment.MissingParamComment" />
     <exclude name="WordPress.Files.FileName.UnderscoresNotAllowed" />
-    <exclude name="WordPress.WP.I18n.MissingTranslatorsComment" />
+    <exclude name="WordPress.Files.FileName.InvalidClassFileName" />
   </rule>
 </ruleset>
