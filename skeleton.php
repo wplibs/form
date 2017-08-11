@@ -17,9 +17,9 @@ require_once trailingslashit( __DIR__ ) . 'bootstrap.php';
 
 // Now boot the Skeleton after WP-init.
 if ( ! defined( 'AWETHEMES_SKELETON_LOADED' ) ) {
-	require_once trailingslashit( __DIR__ ) . 'inc/helpers.php';
-
 	$skeleton = new Skeleton\Skeleton;
+
+	require_once trailingslashit( __DIR__ ) . 'inc/helpers.php';
 
 	/**
 	 * Hooks: skeleton/booting
