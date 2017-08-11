@@ -1,5 +1,5 @@
 <?php
-namespace Skeleton\CMB2\Render;
+namespace Skeleton\CMB2;
 
 use CMB2_Field;
 use Skeleton\CMB2\CMB2;
@@ -7,7 +7,7 @@ use Skeleton\CMB2\Panel;
 use Skeleton\CMB2\Section;
 use Skeleton\CMB2\Tabable;
 
-class CMB2_Render {
+class Render {
 	/**
 	 * CMB2 Instance.
 	 *

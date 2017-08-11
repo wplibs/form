@@ -6,13 +6,12 @@ use CMB2 as CMB2Base;
 use Skeleton\Skeleton;
 use Skeleton\Support\Validator;
 use Skeleton\Support\Multidimensional;
-use Skeleton\CMB2\Render\CMB2_Render;
 
 class CMB2 extends CMB2Base {
 	/**
 	 * CMB2 render instance.
 	 *
-	 * @var CMB2_Render
+	 * @var Render
 	 */
 	protected $render;
 
@@ -52,7 +51,7 @@ class CMB2 extends CMB2Base {
 	 */
 	public function __construct( $config, $object_id = 0 ) {
 		parent::__construct( $config, $object_id );
-		$this->set_render( new CMB2_Render( $this ) );
+		$this->set_render( new Render( $this ) );
 	}
 
 	/**
@@ -579,9 +578,9 @@ class CMB2 extends CMB2Base {
 	/**
 	 * Set CMB2 render.
 	 *
-	 * @param CMB2_Render $render CMB2 render instance.
+	 * @param Render $render CMB2 render instance.
 	 */
-	public function set_render( CMB2_Render $render ) {
+	public function set_render( Render $render ) {
 		$this->render = $render;
 	}
 

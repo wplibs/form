@@ -19,19 +19,7 @@
         "vlucas/valitron": "^1.4",
         "webdevstudios/cmb2": "^2.2"
     },
-    "autoload": {
-        "psr-4": { "Skeleton\\": "inc/" }
-    },
     "scripts": {
-        "post-install-cmd": [
-            "Skeleton\\Support\\Composer_Scripts::clean"
-        ],
-        "post-update-cmd": [
-            "Skeleton\\Support\\Composer_Scripts::clean"
-        ],
-        "clean": [
-            "Skeleton\\Support\\Composer_Scripts::clean"
-        ],
         "install-unit-tests": [
             "bash bin/install-wp-tests.sh wptest_skeleton root 'secret' localhost latest"
         ]
