@@ -46,11 +46,12 @@ if ( ! function_exists( 'wp_data' ) ) {
 
 if ( ! function_exists( 'skeleton_psr4_autoloader' ) ) :
 	/**
-	 * //
+	 * Register PSR-4 autoload classess.
 	 *
-	 * @param  [type] $namespace [description]
-	 * @param  [type] $base_dir  [description]
-	 * @return [type]            [description]
+	 * @param  string|array $namespace A string of namespace or an array with
+	 *                                 namespace and directory to autoload.
+	 * @param  string       $base_dir  Autoload directory if $namespace is string.
+	 * @return void
 	 */
 	function skeleton_psr4_autoloader( $namespace, $base_dir = null ) {
 		$loader = new Autoload;
@@ -69,7 +70,7 @@ endif;
 
 if ( ! function_exists( 'skeleton_display_field_errors' ) ) :
 	/**
-	 * //
+	 * Tiny helper display field errors.
 	 *
 	 * @param  CMB2_Field $field CMB2 Field instance.
 	 * @return void
@@ -94,7 +95,7 @@ endif;
 
 if ( ! function_exists( 'skeleton_render_field' ) ) :
 	/**
-	 * //
+	 * Tiny helper render a field.
 	 *
 	 * @param  CMB2_Field $field CMB2 Field instance.
 	 * @return void
