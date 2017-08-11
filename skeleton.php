@@ -13,8 +13,8 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Try locate the CMB2.
-if ( file_exists( trailingslashit( __DIR__ ) . 'vendor/cmb2/init.php' ) ) {
-	require_once trailingslashit( __DIR__ ) . 'vendor/cmb2/init.php';
+if ( file_exists( trailingslashit( __DIR__ ) . 'vendor/webdevstudios/cmb2/init.php' ) ) {
+	require_once trailingslashit( __DIR__ ) . 'vendor/webdevstudios/cmb2/init.php';
 } elseif ( file_exists( __DIR__ . '/../../webdevstudios/cmb2/init.php' ) ) {
 	require_once __DIR__ . '/../../webdevstudios/cmb2/init.php';
 } else {
