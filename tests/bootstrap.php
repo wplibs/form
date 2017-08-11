@@ -17,7 +17,8 @@ require_once $_tests_dir . '/includes/functions.php';
  * Manually load the plugin being tested.
  */
 function _manually_load_plugin() {
-	require dirname( __DIR__ ) . '/framework.php';
+	require_once dirname( __DIR__ ) . '/vendor/webdevstudios/cmb2/bootstrap.php';
+	require dirname( __DIR__ ) . '/skeleton.php';
 }
 tests_add_filter( 'muplugins_loaded', '_manually_load_plugin' );
 
