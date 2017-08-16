@@ -45,10 +45,6 @@ class Scripts_Hooks extends Service_Hooks {
 		wp_register_style( 'skeleton', $skeleton_url . 'css/skeleton' . $suffix . '.css', array(), $version );
 		wp_register_script( 'skeleton', $skeleton_url . 'js/skeleton' . $suffix . '.js', array( 'wp-util', 'jquery-effects-highlight' ), $version, true );
 
-		wp_register_style( 'skeleton-iconpack', $skeleton_url . 'css/skeleton-iconpack' . $suffix . '.css', array( 'skeleton' ), $version );
-		wp_register_script( 'skeleton-iconpack', $skeleton_url . 'js/skeleton-iconpack' . $suffix . '.js', array( 'skeleton' ), $version, true );
-		wp_register_script( 'icon-picker', $skeleton_url . 'js/vendor/icon-picker' . $suffix . '.js', array( 'media-views' ), '0.5.0', true );
-
 		// Enqueue Skeleton.
 		wp_enqueue_style( 'skeleton' );
 		wp_enqueue_script( 'skeleton' );
@@ -58,23 +54,6 @@ class Scripts_Hooks extends Service_Hooks {
 			'strings' => array(
 				'warning' => esc_html__( 'Are you sure you want to do this?', 'skeleton' ),
 			),
-		) );
-
-		// Font Icons.
-		$icon_manager = skeleton( 'iconfonts_manager' );
-
-		foreach ( $icon_manager->all() as $iconpack ) {
-			$is_registerd = wp_style_is( $iconpack->stylesheet_id, 'registered' );
-
-			if ( ! $is_registerd && $iconpack->stylesheet_uri ) {
-				wp_register_style( $iconpack->stylesheet_id, $iconpack->stylesheet_uri, array(), $iconpack->version );
-			}
-
-			wp_enqueue_style( $iconpack->stylesheet_id );
-		}
-
-		wp_localize_script( 'icon-picker', 'iconPicker', array(
-			'types' => $icon_manager->get_for_iconpicker_js(),
 		) );
 
 		do_action( 'skeleton/register_admin_scripts' );

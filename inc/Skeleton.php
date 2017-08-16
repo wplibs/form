@@ -64,7 +64,6 @@ final class Skeleton extends Container {
 		$this->trigger( new Ajax_Hooks );
 		$this->trigger( new Scripts_Hooks );
 		$this->trigger( new Webfonts_Hooks );
-		$this->trigger( new Iconfonts_Hooks );
 		$this->trigger( new Walker_Hooks );
 
 		static::$instance = $this;
