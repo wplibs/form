@@ -298,7 +298,7 @@ msgstr[1] ""
 msgid "%s Title"
 msgstr ""
 
-#: inc/Scripts_Hooks.php:59
+#: inc/Scripts_Hooks.php:55
 msgid "Are you sure you want to do this?"
 msgstr ""
 
@@ -350,28 +350,8 @@ msgstr ""
 msgid "Invalid payload received."
 msgstr ""
 
-#: inc/CMB2/CMB2.php:80
+#: inc/CMB2/CMB2.php:79
 msgid "Set field priority instead of."
-msgstr ""
-
-#: inc/Iconfonts/Iconfonts_Hooks.php:71
-msgid "Icon Picker"
-msgstr ""
-
-#: inc/Iconfonts/Iconfonts_Hooks.php:72
-msgid "All"
-msgstr ""
-
-#: inc/Iconfonts/Iconfonts_Hooks.php:73, inc/CMB2/Fields/Icon_Field.php:21
-msgid "Select Icon"
-msgstr ""
-
-#: inc/Iconfonts/Installer.php:78
-msgid "Not support"
-msgstr ""
-
-#: inc/Support/Filesystem.php:43
-msgid "Incompatible archive"
 msgstr ""
 
 #: inc/Webfonts/Webfonts.php:154
@@ -410,6 +390,10 @@ msgstr ""
 msgid "Warning! This will overwrite all existing options, please proceed with caution!"
 msgstr ""
 
+#: inc/CMB2/Fields/Icon_Field.php:21
+msgid "Select Icon"
+msgstr ""
+
 #: inc/CMB2/Fields/Icon_Field.php:22
 msgid "Remove"
 msgstr ""
@@ -424,48 +408,4 @@ msgstr ""
 
 #: inc/CMB2/Fields/Link_Color_Field.php:38
 msgid "Active color"
-msgstr ""
-
-#: inc/Iconfonts/Extractor/Elusive_Extractor.php:53
-msgid "Elusive"
-msgstr ""
-
-#: inc/Iconfonts/Extractor/Extractor_Abstract.php:105
-msgid "Invalid Directory Structure."
-msgstr ""
-
-#: inc/Iconfonts/Extractor/Extractor_Abstract.php:109
-msgid "The metadata file too large, maximum is less than 2MB"
-msgstr ""
-
-#: inc/Iconfonts/Extractor/Extractor_Abstract.php:120
-msgid "Invalid icon pack data."
-msgstr ""
-
-#: inc/Iconfonts/Extractor/Fontawesome_Extractor.php:53
-msgid "Font Awesome"
-msgstr ""
-
-#: inc/Iconfonts/views/upload-form.php:16
-msgid "Dismiss the upload form"
-msgstr ""
-
-#: inc/Iconfonts/views/upload-form.php:16
-msgid "Dismiss"
-msgstr ""
-
-#: inc/Iconfonts/views/upload-form.php:20
-msgid "Select Your Files"
-msgstr ""
-
-#: inc/Iconfonts/views/upload-form.php:21
-msgid "Let’s get started importing your custom icon pack"
-msgstr ""
-
-#: inc/Iconfonts/views/upload-form.php:22
-msgid "To get started, simply upload a zip file downloaded from <a href=\"http://fontello.com\" target=\"_blank\">Fontello</a> or <a href=\"https://icomoon.io/app\" target=\"_blank\">IcoMoon App</a>."
-msgstr ""
-
-#: inc/Iconfonts/views/upload-form.php:29
-msgid "Install Now"
 msgstr ""
