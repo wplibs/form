@@ -369,9 +369,9 @@ class CMB2 extends CMB2Base {
 
 		if ( $errors ) {
 			$this->validate_errors = $errors;
+			
+			delete_transient( $this->transient_id( '_errors' ) );
 		}
-
-		delete_transient( $this->transient_id( '_errors' ) );
 	}
 
 	/**
