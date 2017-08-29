@@ -112,9 +112,6 @@ class Taxonomy {
 	public function set( array $taxonomy_args = array() ) {
 		$this->taxonomy_args = $this->parser_args( $taxonomy_args );
 
-		// add_action( 'admin_init', array( $this, 'init_permalink_settings' ) );
-		// add_action( 'current_screen', array( $this, 'save_permalink_settings' ) );
-
 		if ( doing_filter( 'skeleton/init' ) ) {
 			// If inside an `skeleton/init` action, simply call the register method.
 			$this->register();
@@ -124,56 +121,6 @@ class Taxonomy {
 		}
 
 		return $this;
-	}
-
-	/**
-	 * Initialize the permalink settings.
-	 */
-	public function init_permalink_settings() {
-		$id = sprintf( 'skeleton-taxonomy-%s-base', $this->taxonomy );
-		$title = sprintf( esc_html__( '%s base', 'skeleton' ), $this->singular );
-
-		add_settings_field( $id, $title, array( $this, 'permalink_slug_input' ), 'permalink', 'optional' );
-	}
-
-	/**
-	 * Show a slug input box.
-	 *
-	 * @since 3.9.2
-	 * @access  public
-	 * @param  array $args The argument.
-	 */
-	public function permalink_slug_input( $args ) {
-		$permalinks     = get_option( 'avada_permalinks' );
-		$permalink_base = $args['taxonomy'] . '_base';
-		$input_name     = 'skeleton_' . $args['taxonomy'] . '_base';
-		$placeholder    = $args['taxonomy'];
-		?>
-		<input name="<?php echo $input_name; ?>" type="text" class="regular-text code" value="<?php echo ( isset( $permalinks[ $permalink_base ] ) ) ? esc_attr( $permalinks[ $permalink_base ] ) : ''; ?>" placeholder="<?php echo esc_attr( $placeholder ) ?>" />
-		<?php
-	}
-
-	/**
-	 * Save the permalink settings.
-	 *
-	 * @since 3.9.2
-	 */
-	public function save_permalink_settings() {
-		$screen = get_current_screen();
-
-		if ( ! $screen || 'options-permalink' !== $screen->id ) {
-			return;
-		}
-
-		$input_id = 'skeleton_' . $this->taxonomy . '_base';
-
-		if ( isset( $_POST['permalink_structure'] ) && isset( $_POST[ $input_id ] ) ) {
-			check_admin_referer( 'update-permalink' );
-
-			$a = $_POST[ $input_id ];
-
-			(new WP_Option('skeleton_permalinks'))->set($input_id, $a);
-		}
 	}
 
 	/**
@@ -295,12 +242,11 @@ class Taxonomy {
 	/**
 	 * Add a field to default metabox of this taxonomy.
 	 *
-	 * @param  array $field    Metabox field config array.
-	 * @param  int   $position Optional, position of metabox.
+	 * @param  array $field Metabox field config array.
 	 * @return int|false
 	 */
-	public function add_field( array $field, $position = 0 ) {
-		return $this->default_metabox()->add_field( $field, $position );
+	public function add_field( array $field ) {
+		return $this->default_metabox()->add_field( $field );
 	}
 
 	/**
@@ -308,11 +254,10 @@ class Taxonomy {
 	 *
 	 * @param  array    $id       Group ID.
 	 * @param  callable $callback Group builder callback.
-	 * @param  int      $position Optional, position of group.
-	 * @return \Skeleton\CMB2Builder\GroupBuilder
+	 * @return \Skeleton\CMB2\Group
 	 */
-	public function add_group( $id, $callback = null, $position = 0 ) {
-		return $this->default_metabox()->add_group( $id, $callback, $position );
+	public function add_group( $id, $callback = null ) {
+		return $this->default_metabox()->add_group( $id, $callback );
 	}
 
 	/**

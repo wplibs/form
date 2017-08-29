@@ -106,7 +106,7 @@ class Admin_Page extends CMB2\CMB2 {
 	 *
 	 * @param string $page_id Page Settings ID.
 	 */
-	public function __construct( $page_id, Menu_Page $parent_menu = null ) {
+	public function __construct( $page_id ) {
 		$this->page_id = sanitize_key( $page_id );
 		$this->menu_slug = $this->page_id;
 
@@ -123,10 +123,6 @@ class Admin_Page extends CMB2\CMB2 {
 
 		parent::__construct( $metabox_args, $this->page_id );
 		$this->object_type( 'options-page' );
-
-		if ( $parent_menu ) {
-			$this->parent_slug = $parent_menu->get_topmenu();
-		}
 
 		// Set default style for navigation.
 		$this->render->navigation_class = 'wp-clearfix cmb2-nav-default';
