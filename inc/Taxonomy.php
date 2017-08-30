@@ -54,13 +54,6 @@ class Taxonomy {
 	protected $taxonomy_object;
 
 	/**
-	 * WP_Option store permalink settings.
-	 *
-	 * @var Skeleton\WP_Option
-	 */
-	protected $wp_option;
-
-	/**
 	 * Create a taxonomy by static method.
 	 *
 	 * @param string       $taxonomy     The name of the taxonomy.
@@ -86,8 +79,6 @@ class Taxonomy {
 
 		$this->plural = $plural;
 		$this->singular = $singular;
-
-		$this->wp_option = new WP_Option( 'skeleton_permalinks' );
 	}
 
 	/**
