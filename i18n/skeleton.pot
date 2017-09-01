@@ -129,15 +129,15 @@ msgstr ""
 msgid "must be an instance of '%s'"
 msgstr ""
 
-#: inc/Admin_Page.php:157
+#: inc/Admin_Page.php:153
 msgid "Save Changes"
 msgstr ""
 
-#: inc/Admin_Page.php:158
+#: inc/Admin_Page.php:154
 msgid "Settings updated."
 msgstr ""
 
-#: inc/Admin_Page.php:159
+#: inc/Admin_Page.php:155
 msgid "One or more error occurred."
 msgstr ""
 
@@ -149,11 +149,11 @@ msgstr ""
 msgid "`%s` post type has never been registered before."
 msgstr ""
 
-#: inc/Post_Type.php:144, inc/Post_Type.php:145, inc/Taxonomy.php:226
+#: inc/Post_Type.php:144, inc/Post_Type.php:145, inc/Taxonomy.php:164
 msgid "Add New %s"
 msgstr ""
 
-#: inc/Post_Type.php:146, inc/Taxonomy.php:223
+#: inc/Post_Type.php:146, inc/Taxonomy.php:161
 msgid "Edit %s"
 msgstr ""
 
@@ -161,19 +161,19 @@ msgstr ""
 msgid "New %s"
 msgstr ""
 
-#: inc/Post_Type.php:148, inc/Taxonomy.php:222
+#: inc/Post_Type.php:148, inc/Taxonomy.php:160
 msgid "All %s"
 msgstr ""
 
-#: inc/Post_Type.php:149, inc/Taxonomy.php:224
+#: inc/Post_Type.php:149, inc/Taxonomy.php:162
 msgid "View %s"
 msgstr ""
 
-#: inc/Post_Type.php:150, inc/Taxonomy.php:221
+#: inc/Post_Type.php:150, inc/Taxonomy.php:159
 msgid "Search %s"
 msgstr ""
 
-#: inc/Post_Type.php:151, inc/Taxonomy.php:229
+#: inc/Post_Type.php:151, inc/Taxonomy.php:167
 msgid "No %s"
 msgstr ""
 
@@ -181,7 +181,7 @@ msgstr ""
 msgid "No %s found in Trash"
 msgstr ""
 
-#: inc/Post_Type.php:153, inc/Taxonomy.php:233
+#: inc/Post_Type.php:153, inc/Taxonomy.php:171
 msgid "Parent %s:"
 msgstr ""
 
@@ -302,43 +302,39 @@ msgstr ""
 msgid "Are you sure you want to do this?"
 msgstr ""
 
-#: inc/Taxonomy.php:100
+#: inc/Taxonomy.php:91
 msgid "`%s` taxonomy has never been registered before."
 msgstr ""
 
-#: inc/Taxonomy.php:134
-msgid "%s base"
-msgstr ""
-
-#: inc/Taxonomy.php:225
+#: inc/Taxonomy.php:163
 msgid "Update %s"
 msgstr ""
 
-#: inc/Taxonomy.php:227
+#: inc/Taxonomy.php:165
 msgid "New %s Name"
 msgstr ""
 
-#: inc/Taxonomy.php:228
+#: inc/Taxonomy.php:166
 msgid "No %s found."
 msgstr ""
 
-#: inc/Taxonomy.php:232
+#: inc/Taxonomy.php:170
 msgid "Parent %s"
 msgstr ""
 
-#: inc/Taxonomy.php:236
+#: inc/Taxonomy.php:174
 msgid "Popular %s"
 msgstr ""
 
-#: inc/Taxonomy.php:237
+#: inc/Taxonomy.php:175
 msgid "Separate %s with commas"
 msgstr ""
 
-#: inc/Taxonomy.php:238
+#: inc/Taxonomy.php:176
 msgid "Add or remove %s"
 msgstr ""
 
-#: inc/Taxonomy.php:239
+#: inc/Taxonomy.php:177
 msgid "Choose from the most used %s"
 msgstr ""
 
@@ -388,14 +384,6 @@ msgstr ""
 
 #: inc/CMB2/Fields/Backups_Field.php:50
 msgid "Warning! This will overwrite all existing options, please proceed with caution!"
-msgstr ""
-
-#: inc/CMB2/Fields/Icon_Field.php:21
-msgid "Select Icon"
-msgstr ""
-
-#: inc/CMB2/Fields/Icon_Field.php:22
-msgid "Remove"
 msgstr ""
 
 #: inc/CMB2/Fields/Link_Color_Field.php:36
