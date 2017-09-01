@@ -28,7 +28,6 @@ class Manager {
 		$this->container = $container;
 
 		$this->fields = apply_filters( 'skeleton/cmb2/fields', array(
-			'icon'              => 'Skeleton\CMB2\Fields\Icon_Field',
 			'range'             => 'Skeleton\CMB2\Fields\Range_Field',
 			'toggle'            => 'Skeleton\CMB2\Fields\Toggle_Field',
 			'backups'           => 'Skeleton\CMB2\Fields\Backups_Field',
