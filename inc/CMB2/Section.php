@@ -47,11 +47,11 @@ class Section extends Tabable {
 	 *
 	 * @param  array    $id       Group ID.
 	 * @param  callable $callback Group builder callback.
-	 * @param  int      $position Optional, position of group.
-	 * @return \Skeleton\CMB2_Builder\Group_Builder
+	 * @return \Skeleton\CMB2\Group
 	 */
-	public function add_group( $id, $callback = null, $position = 0 ) {
-		$group = $this->cmb2->add_group( $id, $callback, $position );
+	public function add_group( $id, $callback = null ) {
+		$group = $this->cmb2->add_group( $id, $callback );
+
 		$group->set_property( 'section', $this->id );
 
 		return $group;
