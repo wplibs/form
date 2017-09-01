@@ -1,7 +1,7 @@
 <?php
 namespace Skeleton\CMB2;
 
-abstract class Tabable implements Tabable_Interface {
+abstract class Tabable {
 	/**
 	 * Unique identifier.
 	 *

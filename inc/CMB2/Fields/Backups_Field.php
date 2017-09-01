@@ -5,6 +5,13 @@ use Skeleton\CMB2\Backups;
 
 class Backups_Field extends Field_Abstract {
 	/**
+	 * Adding this field to the blacklist of repeatable field-types.
+	 *
+	 * @var boolean
+	 */
+	public $repeatable = false;
+
+	/**
 	 * Render custom field type callback.
 	 *
 	 * @param \CMB2_Field $field              The passed in `CMB2_Field` object.
@@ -24,7 +31,7 @@ class Backups_Field extends Field_Abstract {
 
 		<div class="cmb2-form-backup">
 			<h4><?php esc_html_e( 'Backup', 'skeleton' ); ?></h4>
-			<p><?php printf( wp_kses_post( __( 'Here you can copy/<a href="%s" target="_blank">download</a> current settings. Keep this safe as you can use it as a backup should anything go wrong.', 'skeleton' ) ), esc_url( $backups->get_export_url() ) ); ?></p>
+			<p><?php printf( wp_kses_post( __( 'Here you can copy / <a href="%s" target="_blank">download</a> current settings. Keep this safe as you can use it as a backup should anything go wrong.', 'skeleton' ) ), esc_url( $backups->get_export_url() ) ); ?></p>
 			<textarea class="cmb2-backup-code" readonly rows="10" cols="60"><?php print $backups->backup(); // WPCS: XSS OK. ?></textarea>
 		</div>
 
@@ -41,6 +48,73 @@ class Backups_Field extends Field_Abstract {
 			</p>
 
 			<div class="cmb2-warning"><p><?php esc_html_e( 'Warning! This will overwrite all existing options, please proceed with caution!', 'skeleton' ); ?></p></div>
-		</div><?php
+		</div>
+
+		<script type="text/javascript">
+			(function($) {
+				'use strict';
+
+				$(function() {
+					var $form = $('.cmb2-form-restore', '.cmb2-id-<?php echo esc_attr( $field->id() ) ?>');
+
+					var ajaxRequest = function(data, callback) {
+						$form.find('button').attr('disabled', true);
+						$form.find('textarea').attr('disabled', true);
+
+						var requestData = $.extend(data, {
+							id: $form.data('cmb2'),
+							obj_id: $form.data('objectId'),
+							obj_type: $form.data('objectType'),
+						});
+
+						return $.ajax({
+							type: 'POST',
+							url: window.ajaxurl,
+							data: requestData,
+						})
+						.done(function(response) {
+							if (response && ! response.success) {
+								alert(response.data[0].message);
+							} else {
+								callback(response);
+							}
+						})
+						.always(function() {
+							$form.find('button').removeAttr('disabled');
+							$form.find('textarea').removeAttr('disabled');
+						});
+					};
+
+					$form.on('click', '.cmb2-reset-backup', function(e) {
+						e.preventDefault();
+
+						if (! window.confirm(Skeleton.strings.warning)) {
+							return false;
+						}
+
+						ajaxRequest({
+							action: 'skeleton_reset_cmb2'
+						}, function() {
+							window.location.reload();
+						});
+					});
+
+					$form.on('click', '.cmb2-import-backup', function(e) {
+						e.preventDefault();
+
+						if (! window.confirm(Skeleton.strings.warning)) {
+							return false;
+						}
+
+						ajaxRequest({
+							action: 'skeleton_restore_backup',
+							backup_code: $form.find('.cmb2-restore-code').val(),
+						}, function() {
+							window.location.reload();
+						});
+					});
+				});
+			})(jQuery);
+		</script><?php
 	}
 }

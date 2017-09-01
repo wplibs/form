@@ -30,12 +30,11 @@ class Group {
 	/**
 	 * Add a field to this group field of cmb2.
 	 *
-	 * @param  array $field    CMB2 field config array.
-	 * @param  int   $position Optional, position of field.
+	 * @param  array $field CMB2 field config array.
 	 * @return int|false
 	 */
-	public function add_field( array $field, $position = 0 ) {
-		return $this->cmb2->add_group_field( $this->group_id, $field, $position );
+	public function add_field( array $field ) {
+		return $this->cmb2->add_group_field( $this->group_id, $field );
 	}
 
 	/**

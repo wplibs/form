@@ -14,42 +14,15 @@
         }
     ],
     "require": {
-        "php": ">=5.3.9"
-    },
-    "require-dev": {
-        "pimple/pimple": "^3.0",
-        "vlucas/valitron": "^1.2",
-        "webdevstudios/cmb2": "^2.2.3",
-        "phpunit/phpunit": "^4.8",
-        "composer/installers": "^1.2",
-        "mnsami/composer-custom-directory-installer": "^1.1"
-    },
-    "autoload": {
-        "classmap": [ "inc/Support/Composer_Scripts.php" ]
+        "php": ">=5.3.9",
+        "pimple/pimple": "^3.2",
+        "vlucas/valitron": "^1.4",
+        "webdevstudios/cmb2": "^2.2"
     },
     "scripts": {
-        "post-install-cmd": [
-            "Skeleton\\Support\\Composer_Scripts::clean"
-        ],
-        "post-update-cmd": [
-            "Skeleton\\Support\\Composer_Scripts::clean"
-        ],
-        "clean": [
-            "Skeleton\\Support\\Composer_Scripts::clean"
-        ],
-        "phpunit": [
-            "bash tests/bin/install-wp-tests.sh wptest_framework root 'secret' localhost latest false",
-            "php vendor/bin/phpunit"
+        "install-unit-tests": [
+            "bash bin/install-wp-tests.sh wptest_skeleton root 'secret' localhost latest"
         ]
-    },
-    "extra": {
-        "installer-paths": {
-            "libs/{$name}": [
-                "pimple/pimple",
-                "vlucas/valitron",
-                "webdevstudios/cmb2"
-            ]
-        }
     },
     "config": {
         "preferred-install": "dist"

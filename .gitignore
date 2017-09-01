@@ -1,5 +1,3 @@
-*.css.map
-*.js.map
 .DS_Store
 Thumbs.db
 wp-cli.local.yml

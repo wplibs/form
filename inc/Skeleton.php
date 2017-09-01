@@ -1,14 +1,10 @@
 <?php
-
 namespace Skeleton;
 
-use Skeleton\CMB2\CMB2;
 use Skeleton\CMB2\CMB2_Hooks;
-use Skeleton\CMB2\Scripts_Hooks;
 use Skeleton\Walker\Walker_Hooks;
 use Skeleton\Webfonts\Webfonts_Hooks;
 use Skeleton\Iconfonts\Iconfonts_Hooks;
-use Skeleton\Support\Multidimensional;
 use Skeleton\Container\Container;
 
 final class Skeleton extends Container {
@@ -27,8 +23,6 @@ final class Skeleton extends Container {
 	 * @var array
 	 */
 	protected $taxonomies = array();
-
-	protected $cmb2 = array();
 
 	/**
 	 * The current globally available container (if any).
@@ -60,21 +54,19 @@ final class Skeleton extends Container {
 	public function __construct( array $values = array() ) {
 		parent::__construct( $values );
 
-		static::$instance = $this;
-
 		define( 'SKELETON_VERSION', static::VERSION );
 
 		$this['path'] = plugin_dir_path( __DIR__ );
 		$this['url']  = plugin_dir_url( __DIR__ );
-		$this['public_path'] = trailingslashit( $this['path'] . 'public' );
-		$this['public_url']  = trailingslashit( $this['url'] . 'public' );
 
-		// Register core framework hooks.
+		// Register core hooks.
 		$this->trigger( new CMB2_Hooks );
+		$this->trigger( new Ajax_Hooks );
 		$this->trigger( new Scripts_Hooks );
 		$this->trigger( new Webfonts_Hooks );
 		$this->trigger( new Walker_Hooks );
-		$this->trigger( new Iconfonts_Hooks );
+
+		static::$instance = $this;
 	}
 
 	/**
@@ -95,10 +87,6 @@ final class Skeleton extends Container {
 	public function bind_taxonomy( Taxonomy $taxonomy ) {
 		// $name = $taxonomy->get_instance()->name;
 		$this->taxonomies[] = $taxonomy;
-	}
-
-	public function bind_cmb2( CMB2 $cmb2 ) {
-		$this->cmb2[] = $cmb2;
 	}
 
 	/**

@@ -3,10 +3,6 @@
 .gitattributes             export-ignore
 .editorconfig              export-ignore
 .github                    export-ignore
-bin                        export-ignore
-docs                       export-ignore
-public/sass                export-ignore
-tests                      export-ignore
 README.md                  export-ignore
 bitbucket-pipelines.yml    export-ignore
 composer.json              export-ignore
@@ -17,3 +13,7 @@ phpunit.xml                export-ignore
 phpunit.xml.dist           export-ignore
 phpcs.xml                  export-ignore
 phpcs.xml.dist             export-ignore
+/bin                       export-ignore
+/docs                      export-ignore
+/resouces                  export-ignore
+/tests                     export-ignore

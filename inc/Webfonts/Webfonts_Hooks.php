@@ -13,7 +13,7 @@ class Webfonts_Hooks extends Service_Hooks {
 	 */
 	public function register( $skeleton ) {
 		// If user Google Fonts key is not valid, use this webfonts.
-		$skeleton['webfonts-fallback'] = $skeleton['url'] . 'public/data/webfonts.json';
+		$skeleton['webfonts-fallback'] = trailingslashit( __DIR__ ) . 'webfonts.json';
 
 		$skeleton->bind( 'webfonts', function ( $c ) {
 			return new Webfonts( $c );

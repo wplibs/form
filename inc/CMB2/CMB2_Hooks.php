@@ -14,7 +14,7 @@ class CMB2_Hooks extends Service_Hooks {
 	 */
 	public function register( $skeleton ) {
 		$skeleton->bind( 'cmb2_manager', function () use ( $skeleton ) {
-			return new CMB2_Manager( $skeleton );
+			return new Manager( $skeleton );
 		});
 	}
 

@@ -129,27 +129,31 @@ msgstr ""
 msgid "must be an instance of '%s'"
 msgstr ""
 
-#: inc/Admin_Page.php:157
+#: inc/Admin_Page.php:153
 msgid "Save Changes"
 msgstr ""
 
-#: inc/Admin_Page.php:158
+#: inc/Admin_Page.php:154
 msgid "Settings updated."
 msgstr ""
 
-#: inc/Admin_Page.php:159
+#: inc/Admin_Page.php:155
 msgid "One or more error occurred."
+msgstr ""
+
+#: inc/Ajax_Hooks.php:97
+msgid "Invalid CMB2 ID."
 msgstr ""
 
 #: inc/Post_Type.php:82
 msgid "`%s` post type has never been registered before."
 msgstr ""
 
-#: inc/Post_Type.php:144, inc/Post_Type.php:145, inc/Taxonomy.php:226
+#: inc/Post_Type.php:144, inc/Post_Type.php:145, inc/Taxonomy.php:164
 msgid "Add New %s"
 msgstr ""
 
-#: inc/Post_Type.php:146, inc/Taxonomy.php:223
+#: inc/Post_Type.php:146, inc/Taxonomy.php:161
 msgid "Edit %s"
 msgstr ""
 
@@ -157,19 +161,19 @@ msgstr ""
 msgid "New %s"
 msgstr ""
 
-#: inc/Post_Type.php:148, inc/Taxonomy.php:222
+#: inc/Post_Type.php:148, inc/Taxonomy.php:160
 msgid "All %s"
 msgstr ""
 
-#: inc/Post_Type.php:149, inc/Taxonomy.php:224
+#: inc/Post_Type.php:149, inc/Taxonomy.php:162
 msgid "View %s"
 msgstr ""
 
-#: inc/Post_Type.php:150, inc/Taxonomy.php:221
+#: inc/Post_Type.php:150, inc/Taxonomy.php:159
 msgid "Search %s"
 msgstr ""
 
-#: inc/Post_Type.php:151, inc/Taxonomy.php:229
+#: inc/Post_Type.php:151, inc/Taxonomy.php:167
 msgid "No %s"
 msgstr ""
 
@@ -177,7 +181,7 @@ msgstr ""
 msgid "No %s found in Trash"
 msgstr ""
 
-#: inc/Post_Type.php:153, inc/Taxonomy.php:233
+#: inc/Post_Type.php:153, inc/Taxonomy.php:171
 msgid "Parent %s:"
 msgstr ""
 
@@ -294,48 +298,44 @@ msgstr[1] ""
 msgid "%s Title"
 msgstr ""
 
-#: inc/Taxonomy.php:100
+#: inc/Scripts_Hooks.php:55
+msgid "Are you sure you want to do this?"
+msgstr ""
+
+#: inc/Taxonomy.php:91
 msgid "`%s` taxonomy has never been registered before."
 msgstr ""
 
-#: inc/Taxonomy.php:134
-msgid "%s base"
-msgstr ""
-
-#: inc/Taxonomy.php:225
+#: inc/Taxonomy.php:163
 msgid "Update %s"
 msgstr ""
 
-#: inc/Taxonomy.php:227
+#: inc/Taxonomy.php:165
 msgid "New %s Name"
 msgstr ""
 
-#: inc/Taxonomy.php:228
+#: inc/Taxonomy.php:166
 msgid "No %s found."
 msgstr ""
 
-#: inc/Taxonomy.php:232
+#: inc/Taxonomy.php:170
 msgid "Parent %s"
 msgstr ""
 
-#: inc/Taxonomy.php:236
+#: inc/Taxonomy.php:174
 msgid "Popular %s"
 msgstr ""
 
-#: inc/Taxonomy.php:237
+#: inc/Taxonomy.php:175
 msgid "Separate %s with commas"
 msgstr ""
 
-#: inc/Taxonomy.php:238
+#: inc/Taxonomy.php:176
 msgid "Add or remove %s"
 msgstr ""
 
-#: inc/Taxonomy.php:239
+#: inc/Taxonomy.php:177
 msgid "Choose from the most used %s"
-msgstr ""
-
-#: inc/CMB2/Ajax_Hooks.php:76
-msgid "Invalid CMB2 ID."
 msgstr ""
 
 #: inc/CMB2/Backups.php:77
@@ -346,32 +346,8 @@ msgstr ""
 msgid "Invalid payload received."
 msgstr ""
 
-#: inc/CMB2/CMB2.php:68
+#: inc/CMB2/CMB2.php:79
 msgid "Set field priority instead of."
-msgstr ""
-
-#: inc/CMB2/Scripts_Hooks.php:59
-msgid "Are you sure you want to do this?"
-msgstr ""
-
-#: inc/Iconfonts/Iconfonts_Hooks.php:71
-msgid "Icon Picker"
-msgstr ""
-
-#: inc/Iconfonts/Iconfonts_Hooks.php:72
-msgid "All"
-msgstr ""
-
-#: inc/Iconfonts/Iconfonts_Hooks.php:73, inc/CMB2/Fields/Icon_Field.php:21
-msgid "Select Icon"
-msgstr ""
-
-#: inc/Iconfonts/Installer.php:78
-msgid "Not support"
-msgstr ""
-
-#: inc/Support/Filesystem.php:43
-msgid "Incompatible archive"
 msgstr ""
 
 #: inc/Webfonts/Webfonts.php:154
@@ -382,36 +358,32 @@ msgstr ""
 msgid "Google Fonts"
 msgstr ""
 
-#: inc/CMB2/Fields/Backups_Field.php:26
+#: inc/CMB2/Fields/Backups_Field.php:33
 msgid "Backup"
 msgstr ""
 
-#: inc/CMB2/Fields/Backups_Field.php:27
-msgid "Here you can copy/<a href=\"%s\" target=\"_blank\">download</a> current settings. Keep this safe as you can use it as a backup should anything go wrong."
+#: inc/CMB2/Fields/Backups_Field.php:34
+msgid "Here you can copy / <a href=\"%s\" target=\"_blank\">download</a> current settings. Keep this safe as you can use it as a backup should anything go wrong."
 msgstr ""
 
-#: inc/CMB2/Fields/Backups_Field.php:34
+#: inc/CMB2/Fields/Backups_Field.php:41
 msgid "Restore a backup"
 msgstr ""
 
-#: inc/CMB2/Fields/Backups_Field.php:35
+#: inc/CMB2/Fields/Backups_Field.php:42
 msgid "Copy-paste your backup string here:"
 msgstr ""
 
-#: inc/CMB2/Fields/Backups_Field.php:39
+#: inc/CMB2/Fields/Backups_Field.php:46
 msgid "Backup Now"
 msgstr ""
 
-#: inc/CMB2/Fields/Backups_Field.php:40
+#: inc/CMB2/Fields/Backups_Field.php:47
 msgid "or <a href=\"%s\" class=\"cmb2-reset-backup\">reset</a> to defaults."
 msgstr ""
 
-#: inc/CMB2/Fields/Backups_Field.php:43
+#: inc/CMB2/Fields/Backups_Field.php:50
 msgid "Warning! This will overwrite all existing options, please proceed with caution!"
-msgstr ""
-
-#: inc/CMB2/Fields/Icon_Field.php:22
-msgid "Remove"
 msgstr ""
 
 #: inc/CMB2/Fields/Link_Color_Field.php:36
@@ -424,48 +396,4 @@ msgstr ""
 
 #: inc/CMB2/Fields/Link_Color_Field.php:38
 msgid "Active color"
-msgstr ""
-
-#: inc/Iconfonts/Extractor/Elusive_Extractor.php:53
-msgid "Elusive"
-msgstr ""
-
-#: inc/Iconfonts/Extractor/Extractor_Abstract.php:105
-msgid "Invalid Directory Structure."
-msgstr ""
-
-#: inc/Iconfonts/Extractor/Extractor_Abstract.php:109
-msgid "The metadata file too large, maximum is less than 2MB"
-msgstr ""
-
-#: inc/Iconfonts/Extractor/Extractor_Abstract.php:120
-msgid "Invalid icon pack data."
-msgstr ""
-
-#: inc/Iconfonts/Extractor/Fontawesome_Extractor.php:53
-msgid "Font Awesome"
-msgstr ""
-
-#: inc/Iconfonts/views/upload-form.php:16
-msgid "Dismiss the upload form"
-msgstr ""
-
-#: inc/Iconfonts/views/upload-form.php:16
-msgid "Dismiss"
-msgstr ""
-
-#: inc/Iconfonts/views/upload-form.php:20
-msgid "Select Your Files"
-msgstr ""
-
-#: inc/Iconfonts/views/upload-form.php:21
-msgid "Let’s get started importing your custom icon pack"
-msgstr ""
-
-#: inc/Iconfonts/views/upload-form.php:22
-msgid "To get started, simply upload a zip file downloaded from <a href=\"http://fontello.com\" target=\"_blank\">Fontello</a> or <a href=\"https://icomoon.io/app\" target=\"_blank\">IcoMoon App</a>."
-msgstr ""
-
-#: inc/Iconfonts/views/upload-form.php:29
-msgid "Install Now"
 msgstr ""

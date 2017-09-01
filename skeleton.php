@@ -12,12 +12,8 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-// First, load the bootstrap file.
+// First, init the bootstrap.
 require_once trailingslashit( __DIR__ ) . 'bootstrap.php';
-
-// Next, load CMB2. Don't worry about duplicate,
-// CMB2 already take care about that.
-require_once trailingslashit( __DIR__ ) . 'libs/cmb2/init.php';
 
 // Now boot the Skeleton after WP-init.
 if ( ! defined( 'AWETHEMES_SKELETON_LOADED' ) ) {

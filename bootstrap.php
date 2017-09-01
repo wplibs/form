@@ -1,14 +1,26 @@
 <?php
+/**
+ * Skeleton bootstrap file.
+ *
+ * @package Skeleton
+ */
 
-require_once trailingslashit( __DIR__ ) . 'inc/helpers.php';
-
-if ( ! class_exists( 'Skeleton\\Support\\Autoload', false ) ) {
-	require_once trailingslashit( __DIR__ ) . 'inc/Support/Autoload.php';
+// Load local composer autoload.
+if ( file_exists( trailingslashit( __DIR__ ) . 'vendor/autoload.php' ) ) {
+	require_once trailingslashit( __DIR__ ) . 'vendor/autoload.php';
 }
 
-// Autoloader.
-skeleton_psr4_autoloader(array(
-	'Pimple\\'   => trailingslashit( __DIR__ ) . 'libs/pimple/src/Pimple/',
-	'Valitron\\' => trailingslashit( __DIR__ ) . 'libs/valitron/src/Valitron/',
-	'Skeleton\\' => trailingslashit( __DIR__ ) . 'inc/',
-));
+// Try locate the CMB2.
+if ( file_exists( trailingslashit( __DIR__ ) . 'vendor/webdevstudios/cmb2/init.php' ) ) {
+	require_once trailingslashit( __DIR__ ) . 'vendor/webdevstudios/cmb2/init.php';
+} elseif ( file_exists( __DIR__ . '/../../webdevstudios/cmb2/init.php' ) ) {
+	require_once __DIR__ . '/../../webdevstudios/cmb2/init.php';
+} else {
+	throw new RuntimeException( 'Unable to locate the CMB2' );
+}
+
+// Include helpers.
+require_once trailingslashit( __DIR__ ) . 'inc/helpers.php';
+
+// Autoload the Skeleton.
+skeleton_psr4_autoloader( 'Skeleton\\', trailingslashit( __DIR__ ) . 'inc/' );

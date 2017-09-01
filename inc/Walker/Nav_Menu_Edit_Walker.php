@@ -54,7 +54,7 @@ class Nav_Menu_Edit_Walker extends \Walker_Nav_Menu_Edit {
 		 * @param int    $id    Nav menu ID.
 		 * @return string
 		 */
-		do_action( 'skeleton/nav_menu_edit_walker/custom_fields', $id, $item, $depth, $args );
+		do_action( 'wp_nav_menu_item_custom_fields', $id, $item, $depth, $args );
 
 		return ob_get_clean();
 	}
