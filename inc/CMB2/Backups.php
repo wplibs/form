@@ -188,7 +188,7 @@ class Backups {
 	 * Loop through CMB2 fields and set backup data.
 	 */
 	protected function fetch_backup_data() {
-		$ignore_types = array( 'title', 'backup' );
+		$ignore_types = array( 'title', 'backups' );
 
 		foreach ( $this->cmb_instance->prop( 'fields' ) as $field ) {
 			// Ignore some field types.
@@ -205,7 +205,7 @@ class Backups {
 				continue;
 			}
 
-			$this->backup_data[ $field->_id() ] = $field_value;
+			$this->backup_data[ $field->id( true ) ] = $field_value;
 		}
 	}
 }
