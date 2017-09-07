@@ -346,6 +346,11 @@ class CMB2 extends CMB2Base {
 				continue;
 			}
 
+			$field = $this->get_field( $args );
+			if ( ! $field->prop( 'save_field' ) ) {
+				continue;
+			}
+
 			if ( ! empty( $args['validate'] ) ) {
 				$id = $args['id'];
 				$ruleset[ $id ] = $args['validate'];
