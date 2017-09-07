@@ -90,7 +90,7 @@ final class Skeleton extends Container {
 	}
 
 	/**
-	 * Bootstrap the framework.
+	 * Bootstrap the Skeleton.
 	 */
 	public function boot() {
 		parent::boot();

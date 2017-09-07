@@ -12,19 +12,11 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-// First, init the bootstrap.
-require_once trailingslashit( __DIR__ ) . 'bootstrap.php';
-
-// Now boot the Skeleton after WP-init.
 if ( ! defined( 'AWETHEMES_SKELETON_LOADED' ) ) {
-	$skeleton = new Skeleton\Skeleton;
+	// First, init the bootstrap.
+	require_once trailingslashit( __DIR__ ) . 'bootstrap.php';
 
-	/**
-	 * Hooks: skeleton/booting
-	 *
-	 * @param Skeleton $skeleton
-	 */
-	do_action( 'skeleton/booting', $skeleton );
+	$skeleton = new Skeleton\Skeleton;
 
 	/**
 	 * Finally, we run Skeleton after `cmb2_init` fired.
@@ -32,7 +24,7 @@ if ( ! defined( 'AWETHEMES_SKELETON_LOADED' ) ) {
 	 * @hook skeleton/init
 	 * @hook skeleton/after_init
 	 */
-	add_action( 'cmb2_init', array( $skeleton, 'run' ), 5 );
+	add_action( 'cmb2_init', array( $skeleton, 'run' ) );
 
 	// Declare Skeleton is loaded.
 	define( 'AWETHEMES_SKELETON_LOADED', true );
