@@ -8,7 +8,7 @@ use Skeleton\Iconfonts\Iconfonts_Hooks;
 use Skeleton\Container\Container;
 
 final class Skeleton extends Container {
-	const VERSION = '0.3.0';
+	const VERSION = '0.3.1';
 
 	/**
 	 * All of the custom post types.
