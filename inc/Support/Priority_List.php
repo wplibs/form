@@ -8,10 +8,10 @@ namespace Skeleton\Support;
  * @license http://framework.zend.com/license/new-bsd New BSD License
  */
 class Priority_List implements \Iterator, \Countable {
-
 	const EXTR_DATA     = 0x00000001;
 	const EXTR_PRIORITY = 0x00000002;
 	const EXTR_BOTH     = 0x00000003;
+
 	/**
 	 * Internal list of all items.
 	 *
