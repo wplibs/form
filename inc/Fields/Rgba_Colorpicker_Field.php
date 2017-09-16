@@ -1,7 +1,7 @@
 <?php
-namespace Skeleton\CMB2\Fields;
+namespace Skeleton\Fields;
 
-interface Field_Interface {
+class Rgba_Colorpicker_Field extends CMB2_Field {
 	/**
 	 * Render custom field type callback.
 	 *
@@ -11,7 +11,16 @@ interface Field_Interface {
 	 * @param string      $object_type        The type of object you are working with.
 	 * @param \CMB2_Types $field_type_object  The `CMB2_Types` object.
 	 */
-	public function output( $field, $escaped_value, $object_id, $object_type, $field_type_object );
+	public function output( $field, $escaped_value, $object_id, $object_type, $field_type_object ) {
+		print $field_type_object->input( array( // WPCS: XSS OK.
+			'class'              => 'cmb2-colorpicker cmb2-text-small',
+			'data-alpha'         => true,
+			'data-default-color' => $field->args( 'default' ),
+			'js_dependencies'    => array( 'wp-color-picker-alpha' ),
+		) );
+
+		wp_enqueue_style( 'wp-color-picker' );
+	}
 
 	/**
 	 * Filter the value before it is saved.
@@ -22,13 +31,7 @@ interface Field_Interface {
 	 * @param array          $field_args The current field's arguments.
 	 * @param \CMB2_Sanitize $sanitizer  The `CMB2_Sanitize` object.
 	 */
-	public function sanitization( $override_value, $value, $object_id, $field_args, $sanitizer );
-
-	/**
-	 * Filter field types that are non-repeatable.
-	 *
-	 * @param  array $fields Array of fields designated as non-repeatable.
-	 * @return array
-	 */
-	public function disable_repeatable( $fields );
+	public function sanitization( $override_value, $value, $object_id, $field_args, $sanitizer ) {
+		return $sanitizer->colorpicker();
+	}
 }

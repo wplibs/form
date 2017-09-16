@@ -8,22 +8,13 @@ class Webfonts {
 	 * Google Fonts Service.
 	 */
 	const GOOGLE_FONTS_SERVICE = 'https://www.googleapis.com/webfonts/v1/webfonts';
-	const GOOGLE_FONTS_TRANSIENT = 'skeleton/google_fonts';
-
-	/**
-	 * The Skeleton instance.
-	 *
-	 * @var Skeleton
-	 */
-	protected $skeleton;
+	const GOOGLE_FONTS_TRANSIENT = 'skeleton_google_fonts';
 
 	/**
 	 * Constructor Webfonts.
-	 *
-	 * @param Skeleton $skeleton Skeleton skeleton instance.
 	 */
-	public function __construct( Skeleton $skeleton ) {
-		$this->skeleton = $skeleton;
+	public function __construct() {
+		// ...
 	}
 
 	/**
@@ -35,49 +26,49 @@ class Webfonts {
 	 */
 	public function get_google_fonts() {
 		// If found cached fonts in transient, just return it.
-		if ( $cached_fonts = get_transient( static::GOOGLE_FONTS_TRANSIENT ) ) {
-			return apply_filters( 'skeleton/webfonts/google_fonts', $cached_fonts );
-		}
+		$fonts = get_transient( static::GOOGLE_FONTS_TRANSIENT );
 
-		$fonts = array();
-		$google_fonts = $this->request_google_fonts();
+		if ( ! $fonts ) {
+			$fonts = array();
+			$google_fonts = $this->request_google_fonts();
 
-		// If we can't get Google Fonts by user key, use from fallback.
-		if ( empty( $google_fonts ) ) {
-			$google_fonts = json_decode( wp_remote_fopen( $this->skeleton['webfonts-fallback'] ), true );
-		}
-
-		// Leave a empty array if can't get fonts by every way.
-		if ( empty( $google_fonts['items'] ) ) {
-			return $fonts;
-		}
-
-		// Build our fonts list.
-		foreach ( $google_fonts['items'] as $item ) {
-			$urls = array();
-
-			// Get font properties from json array.
-			foreach ( $item['variants'] as $variant ) {
-				$name = str_replace( ' ', '+', $item['family'] );
-				$urls[ $variant ] = "https://fonts.googleapis.com/css?family={$name}:{$variant}";
+			// If we can't get Google Fonts by user key, use from fallback.
+			if ( empty( $google_fonts ) ) {
+				$google_fonts = json_decode( wp_remote_fopen( trailingslashit( __DIR__ ) . 'webfonts.json' ), true );
 			}
 
-			// Add this font to the fonts array.
-			$uid = sanitize_key( $item['family'] );
-			$fonts[ $uid ] = array(
-				'name'         => $item['family'],
-				'display_name' => $item['family'],
-				'category'     => $item['category'],
-				'font_type'    => 'google',
-				'font_weights' => $item['variants'],
-				'subsets'      => $item['subsets'],
-				'files'        => $item['files'],
-				'urls'         => $urls,
-			);
-		}
+			// Leave a empty array if can't get fonts.
+			if ( empty( $google_fonts['items'] ) ) {
+				return []; // TODO: ...
+			}
 
-		// Set transient for google fonts.
-		set_transient( static::GOOGLE_FONTS_TRANSIENT, $fonts, 14 * DAY_IN_SECONDS );
+			// Build our fonts list.
+			foreach ( $google_fonts['items'] as $item ) {
+				$urls = array();
+
+				// Get font properties from json array.
+				foreach ( $item['variants'] as $variant ) {
+					$name = str_replace( ' ', '+', $item['family'] );
+					$urls[ $variant ] = "https://fonts.googleapis.com/css?family={$name}:{$variant}";
+				}
+
+				// Add this font to the fonts array.
+				$uid = sanitize_key( $item['family'] );
+				$fonts[ $uid ] = array(
+					'name'         => $item['family'],
+					'display_name' => $item['family'],
+					'category'     => $item['category'],
+					'font_type'    => 'google',
+					'font_weights' => $item['variants'],
+					'subsets'      => $item['subsets'],
+					'files'        => $item['files'],
+					'urls'         => $urls,
+				);
+			}
+
+			// Set transient for google fonts.
+			set_transient( static::GOOGLE_FONTS_TRANSIENT, $fonts, 29 * DAY_IN_SECONDS );
+		} // End if().
 
 		return apply_filters( 'skeleton/webfonts/google_fonts', $fonts );
 	}
@@ -199,8 +190,15 @@ class Webfonts {
 	 * @return array|false
 	 */
 	public function request_google_fonts( $api_key = null ) {
-		$api_key = $api_key ? $api_key : $this->skeleton->get_option( 'google_fonts_api_keys' );
-		$response = wp_remote_get( static::GOOGLE_FONTS_SERVICE . '?sort=alpha' . ( $api_key ? "&key={$api_key}" : '' ), array( 'sslverify' => false ) );
+		$api_key = apply_filters( 'skeleton/webfonts/google_fonts_api_keys', null );
+
+		if ( empty( $api_key ) ) {
+			return false;
+		}
+
+		$response = wp_remote_get( static::GOOGLE_FONTS_SERVICE . '?sort=alpha' . ( $api_key ? "&key={$api_key}" : '' ), array(
+			'sslverify' => false,
+		));
 
 		if ( 200 !== wp_remote_retrieve_response_code( $response ) ) {
 			return false;

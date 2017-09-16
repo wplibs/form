@@ -8,4 +8,5 @@ class Panel extends Tabable {
 	 * @var array
 	 */
 	public $sections = array();
+
 }

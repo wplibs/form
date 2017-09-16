@@ -1,7 +1,14 @@
 <?php
-namespace Skeleton\CMB2\Fields;
+namespace Skeleton\Fields;
 
-class Rgba_Colorpicker_Field extends Field_Abstract {
+class Toggle_Field extends CMB2_Field {
+	/**
+	 * Adding this field to the blacklist of repeatable field-types.
+	 *
+	 * @var boolean
+	 */
+	public $repeatable = false;
+
 	/**
 	 * Render custom field type callback.
 	 *
@@ -12,14 +19,25 @@ class Rgba_Colorpicker_Field extends Field_Abstract {
 	 * @param \CMB2_Types $field_type_object  The `CMB2_Types` object.
 	 */
 	public function output( $field, $escaped_value, $object_id, $object_type, $field_type_object ) {
-		wp_enqueue_style( 'wp-color-picker' );
+		$args = array(
+			'type'  => 'checkbox',
+			'value' => 'on',
+			'class' => 'onoffswitch-checkbox',
+			'desc'  => sprintf( '<label class="onoffswitch-label" for="%s"></label>', $field_type_object->_id() ),
+		);
 
-		print $field_type_object->input( array( // WPCS: XSS OK.
-			'class'              => 'cmb2-colorpicker cmb2-text-small',
-			'data-alpha'         => true,
-			'data-default-color' => $field->args( 'default' ),
-			'js_dependencies'    => array( 'wp-color-picker-alpha' ),
-		) );
+		if ( ! empty( $escaped_value ) ) {
+			$args['checked'] = 'checked';
+		}
+
+		$type = new \CMB2_Type_Text( $field_type_object );
+
+		printf( // WPCS: XSS OK.
+			'<div class="onoffswitch %3$s">%1$s</div> <p class="cmb2-metabox-description">%2$s</p>',
+			$type->render( $args ),
+			$field_type_object->_desc(),
+			esc_attr( $field->prop( 'styled' ) )
+		);
 	}
 
 	/**
@@ -32,6 +50,6 @@ class Rgba_Colorpicker_Field extends Field_Abstract {
 	 * @param \CMB2_Sanitize $sanitizer  The `CMB2_Sanitize` object.
 	 */
 	public function sanitization( $override_value, $value, $object_id, $field_args, $sanitizer ) {
-		return $sanitizer->colorpicker();
+		return $sanitizer->checkbox();
 	}
 }

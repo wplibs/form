@@ -1,10 +1,10 @@
 <?php
 namespace Skeleton\CMB2;
 
+use CMB2;
 use Skeleton\Admin_Page;
-use Skeleton\Support\Encrypter;
 
-class Backups {
+class Backup {
 	/**
 	 * CMB2 instance object.
 	 *
@@ -36,11 +36,11 @@ class Backups {
 	/**
 	 * Create A CMB2 Backup Manager.
 	 *
-	 * @param \CMB2      $cmb_instance MB2 instance object.
+	 * @param CMB2       $cmb_instance MB2 instance object.
 	 * @param int|string $object_id    CMB2 Object ID.
 	 * @param string     $object_type  Type of object being saved. (e.g., post, user, or comment).
 	 */
-	public function __construct( \CMB2 $cmb_instance, $object_id = 0, $object_type = '' ) {
+	public function __construct( CMB2 $cmb_instance, $object_id = 0, $object_type = '' ) {
 		$this->cmb_instance = $cmb_instance;
 
 		$this->object_id = $cmb_instance->object_id( $object_id );
@@ -55,7 +55,7 @@ class Backups {
 	 * @return string
 	 */
 	public function backup() {
-		return Encrypter::encrypt( array(
+		return $this->encrypt( array(
 			'cmb_id'      => $this->cmb_instance->cmb_id,
 			'object_id'   => (string) $this->object_id,
 			'object_type' => $this->object_type,
@@ -78,7 +78,7 @@ class Backups {
 		}
 
 		// Decrypt payload code and check valid payload header.
-		$decrypt = @Encrypter::decrypt( $payload );
+		$decrypt = @$this->decrypt( $payload );
 		if ( ! $this->is_valid_payload( $decrypt ) ) {
 			return new \WP_Error( 'error', esc_html__( 'Invalid payload received.', 'skeleton' ) );
 		}
@@ -207,5 +207,25 @@ class Backups {
 
 			$this->backup_data[ $field->id( true ) ] = $field_value;
 		}
+	}
+
+	/**
+	 * Encrypt the given value.
+	 *
+	 * @param  string $value Encrypt value.
+	 * @return string
+	 */
+	protected function encrypt( $value ) {
+		return rtrim( strtr( base64_encode( addslashes( gzcompress( serialize( $value ), 9 ) ) ), '+/', '-_' ), '=' );
+	}
+
+	/**
+	 * Decrypt the given value.
+	 *
+	 * @param  string $payload Payload to decrypt.
+	 * @return string
+	 */
+	protected function decrypt( $payload ) {
+		return unserialize( gzuncompress( stripslashes( base64_decode( rtrim( strtr( $payload, '-_', '+/' ), '=' ) ) ) ) );
 	}
 }

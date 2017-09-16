@@ -1,7 +1,7 @@
 <?php
-namespace Skeleton\CMB2\Fields;
+namespace Skeleton\Fields;
 
-class Typography_Field extends Field_Abstract {
+class Typography_Field extends CMB2_Field {
 	/**
 	 * Render custom field type callback.
 	 *
@@ -14,7 +14,7 @@ class Typography_Field extends Field_Abstract {
 	public function output( $field, $escaped_value, $object_id, $object_type, $field_type_object ) {
 		$options = '';
 
-		foreach ( $this->container['webfonts']->get_all_fonts( 'assoc' ) as $fonts ) {
+		foreach ( skeleton()->get_webfonts()->get_all_fonts( 'assoc' ) as $fonts ) {
 			$options .= '<optgroup label="' . $fonts['label'] . '">';
 
 			foreach ( $fonts['fonts'] as $font_name => $font_info ) {

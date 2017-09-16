@@ -1,5 +1,4 @@
 <?php
-
 namespace Skeleton;
 
 use Skeleton\Support\Priority_List;
@@ -10,7 +9,7 @@ use Skeleton\Support\Priority_List;
  * @see https://developer.wordpress.org/reference/functions/add_menu_page
  * @see https://developer.wordpress.org/reference/functions/add_submenu_page
  */
-class Menu_Page {
+class Admin_Menu {
 	/**
 	 * Top-level menu page ID.
 	 *
@@ -58,23 +57,15 @@ class Menu_Page {
 	 * Trigger admin_init hook.
 	 */
 	public function init() {
-		add_action( 'admin_menu', array( $this, 'admin_menu' ), 5 );
-	}
-
-	/**
-	 * Return topmenu slug.
-	 *
-	 * @return string
-	 */
-	public function get_topmenu() {
-		return $this->topmenu;
+		add_action( 'admin_menu', array( $this, 'add_admin_menu' ), 5 );
 	}
 
 	/**
 	 * Add a submenu to a top-level menu.
 	 *
-	 * @param string $submenu_id   Submenu ID.
-	 * @param array  $submenu_args Submenu array arguments.
+	 * @param  string $submenu_id   Submenu ID.
+	 * @param  array  $submenu_args Submenu array arguments.
+	 * @return $this
 	 */
 	public function add_submenu( $submenu_id, array $submenu_args = array() ) {
 		$submenu_args = wp_parse_args( $submenu_args, array(
@@ -88,7 +79,10 @@ class Menu_Page {
 		));
 
 		$submenu_args['menu_slug'] = $submenu_id;
+
 		$this->submenus[ $submenu_id ] = $submenu_args;
+
+		return $this;
 	}
 
 	/**
@@ -96,7 +90,7 @@ class Menu_Page {
 	 *
 	 * @access private
 	 */
-	public function admin_menu() {
+	public function add_admin_menu() {
 		$topmenu = $this->topmenu_args;
 
 		if ( $this->topmenu ) {
@@ -111,17 +105,19 @@ class Menu_Page {
 			$submenu_hook = add_submenu_page( $submenu['parent_slug'], $submenu['page_title'], $submenu['menu_title'], $submenu['capability'], $submenu['menu_slug'], $submenu['function'] );
 
 			if ( $submenu_hook && $submenu['noheader'] ) {
-				add_action( 'load-' . $submenu_hook, array( $this, 'noheader' ) );
+				add_action( 'load-' . $submenu_hook, function() {
+					$_GET['noheader'] = true;
+				});
 			}
 		}
 	}
 
 	/**
-	 * Page with no header.
+	 * Gets topmenu slug.
 	 *
-	 * @access private
+	 * @return string
 	 */
-	public function noheader() {
-		$_GET['noheader'] = true;
+	public function get_topmenu() {
+		return $this->topmenu;
 	}
 }

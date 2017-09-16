@@ -1,9 +1,6 @@
 <?php
 namespace Skeleton;
 
-use RuntimeException;
-use Skeleton\Skeleton;
-
 /**
  * A class for generating Custom Post Types.
  *
@@ -67,9 +64,6 @@ class Post_Type {
 		$this->post_type = $post_type;
 		$this->singular  = $singular;
 		$this->plural    = $plural;
-
-		// Binding CPT instances into the container.
-		skeleton()->bind_post_type( $this );
 	}
 
 	/**
@@ -79,7 +73,7 @@ class Post_Type {
 	 */
 	public function get_instance() {
 		if ( is_null( $this->post_type_object ) ) {
-			throw new RuntimeException( sprintf( esc_html__( '`%s` post type has never been registered before.', 'skeleton' ), $this->post_type ) );
+			throw new \RuntimeException( "The `{$this->post_type}` post type has never been registered before" );
 		}
 
 		return $this->post_type_object;

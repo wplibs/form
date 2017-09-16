@@ -1,7 +1,7 @@
 <?php
-namespace Skeleton\CMB2\Fields;
+namespace Skeleton\Fields;
 
-class Image_Field extends Field_Abstract {
+class Image_Field extends CMB2_Field {
 	/**
 	 * Render custom field type callback.
 	 *

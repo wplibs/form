@@ -16,6 +16,8 @@ if ( ! defined( 'AWETHEMES_SKELETON_LOADED' ) ) {
 	// First, init the bootstrap.
 	require_once trailingslashit( __DIR__ ) . 'bootstrap.php';
 
+	define( 'SKELETON_VERSION', Skeleton\Skeleton::VERSION );
+
 	$skeleton = new Skeleton\Skeleton;
 
 	/**

@@ -1,34 +1,13 @@
 <?php
 namespace Skeleton\CMB2;
 
-use Skeleton\Container\Service_Hooks;
 use Skeleton\Support\Multidimensional;
 
-class CMB2_Hooks extends Service_Hooks {
+class CMB2_Hooks {
 	/**
-	 * Registers services on the given container.
-	 *
-	 * This method should only be used to configure services and parameters.
-	 *
-	 * @param Skeleton $skeleton Skeleton instance.
+	 * Hooks into CMB2.
 	 */
-	public function register( $skeleton ) {
-		$skeleton->bind( 'cmb2_manager', function () use ( $skeleton ) {
-			return new Manager( $skeleton );
-		});
-	}
-
-	/**
-	 * Init service provider.
-	 *
-	 * This method will be run after container booted.
-	 *
-	 * @param Skeleton $skeleton Skeleton instance.
-	 */
-	public function init( $skeleton ) {
-		// Init custom fields.
-		$skeleton['cmb2_manager']->hooks_fields();
-
+	public function __construct() {
 		// Fixed checkbox issue with default is true.
 		add_filter( 'cmb2_sanitize_toggle', array( $this, 'sanitize_checkbox' ), 20, 2 );
 		add_filter( 'cmb2_sanitize_checkbox', array( $this, 'sanitize_checkbox' ), 20, 2 );
@@ -140,10 +119,9 @@ class CMB2_Hooks extends Service_Hooks {
 		// If have one id-data keys, that mean we only delete that key.
 		if ( 1 === count( $ids ) ) {
 			$delete_key = $ids[0];
-
-		// If more than one keys in id-data,
-		// we need build a multidimensional from that.
 		} else {
+			// If more than one keys in id-data,
+			// we need build a multidimensional from that.
 			$id_base = array_shift( $ids );
 			$delete_key = $id_base . '[' . implode( '][', $ids ) . ']';
 		}

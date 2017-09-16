@@ -1,11 +1,9 @@
 <?php
-namespace Skeleton\CMB2\Fields;
+namespace Skeleton\Fields;
 
-use Skeleton\Support\Utils;
-use Skeleton\Container\Container;
 use Skeleton\Support\Multidimensional;
 
-abstract class Field_Abstract implements Field_Interface {
+abstract class CMB2_Field {
 	/**
 	 * Field type.
 	 *
@@ -33,24 +31,6 @@ abstract class Field_Abstract implements Field_Interface {
 	 * @var \CMB2_Types
 	 */
 	protected $field_type_object;
-
-	/**
-	 * Skeleton container instance.
-	 *
-	 * @var Container
-	 */
-	protected $container;
-
-	/**
-	 * Create a CMB2 custom field type.
-	 *
-	 * @param Container $container Skeleton container instance.
-	 * @param string    $type      Custom field type.
-	 */
-	public function __construct( Container $container, $type ) {
-		$this->type = $type;
-		$this->container = $container;
-	}
 
 	/**
 	 * This method will run after hook register field.
@@ -101,6 +81,7 @@ abstract class Field_Abstract implements Field_Interface {
 	 */
 	public function disable_repeatable( $fields ) {
 		$fields[ $this->type ] = 1;
+
 		return $fields;
 	}
 
@@ -115,8 +96,28 @@ abstract class Field_Abstract implements Field_Interface {
 		$base_id = $this->field->group ? $this->field->args( '_id' ) : $this->field_type_object->_id();
 
 		return $this->field->get_field_clone( wp_parse_args( $args, array(
-			'id'      => Utils::clone_id( $base_id, $clone_suffix ),
+			'id'      => $this->clone_id( $base_id, $clone_suffix ),
 			'default' => $this->field->args( 'default_' . $clone_suffix ),
 		) ) );
+	}
+
+	/**
+	 * Return a clone ID by given a suffix.
+	 *
+	 * @param  string $base_id      Base ID.
+	 * @param  string $clone_suffix Clone suffix.
+	 * @return string
+	 */
+	protected function clone_id( $base_id, $clone_suffix ) {
+		$id_data = Multidimensional::split( $base_id );
+
+		if ( empty( $id_data['keys'] ) ) {
+			return $base_id . '_' . $clone_suffix;
+		}
+
+		$editkey = array_pop( $id_data['keys'] );
+		$id_data['keys'][] = $editkey . '_' . $clone_suffix;
+
+		return Multidimensional::build( $id_data );
 	}
 }

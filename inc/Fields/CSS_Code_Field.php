@@ -1,5 +1,5 @@
 <?php
-namespace Skeleton\CMB2\Fields;
+namespace Skeleton\Fields;
 
 class CSS_Code_Field extends HTML_Code_Field {
 	/**

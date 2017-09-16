@@ -1,20 +1,11 @@
 <?php
-namespace Skeleton;
+namespace Skeleton\CMB2;
 
-use Skeleton\CMB2\CMB2;
-use Skeleton\CMB2\Backups;
-use Skeleton\Support\Utils;
-use Skeleton\Container\Service_Hooks;
-
-class Ajax_Hooks extends Service_Hooks {
+class Backup_Ajax {
 	/**
-	 * Init service provider.
-	 *
-	 * This method will be run after container booted.
-	 *
-	 * @param Container $container Container instance.
+	 * Ajax backup and restore CMB2 data.
 	 */
-	public function init( $container ) {
+	public function __construct() {
 		add_action( 'wp_ajax_skeleton_export_backup', array( $this, 'ajax_export_backup' ) );
 		add_action( 'wp_ajax_skeleton_restore_backup', array( $this, 'ajax_restore_backup' ) );
 		add_action( 'wp_ajax_skeleton_reset_cmb2', array( $this, 'ajax_reset_cmb2' ) );
@@ -24,19 +15,25 @@ class Ajax_Hooks extends Service_Hooks {
 	 * Handler AJAX export CMB2 backups data.
 	 */
 	public function ajax_export_backup() {
-		$backups = new Backups( $this->get_cmb2_from_request() );
+		$backups = new Backup( $this->get_cmb2_from_request() );
+		$filename = $backups->get_backup_id() . '-' . date_i18n( 'mdY' ) . '.txt';
 
-		Utils::send_download(
-			$backups->backup(),
-			$backups->get_backup_id() . '-' . date_i18n( 'mdY' ) . '.txt'
-		);
+		header( 'Content-Type: application/octet-stream; charset=' . get_option( 'blog_charset' ), true );
+		header( 'Content-disposition: attachment; filename=' . $filename );
+		header( 'Content-Transfer-Encoding: binary' );
+		header( 'Pragma: no-cache' );
+		header( 'Expires: 0' );
+
+		// Print data endwith newline.
+		print $backups->backup() . "\n"; // WPCS: XSS OK.
+		exit;
 	}
 
 	/**
 	 * Handler AJAX restore CMB2 backups data.
 	 */
 	public function ajax_restore_backup() {
-		$backups = new Backups( $this->get_cmb2_from_request() );
+		$backups = new Backup( $this->get_cmb2_from_request() );
 
 		ob_clean();
 		$restored = $backups->restore( $this->request( 'backup_code' ) );

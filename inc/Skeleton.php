@@ -1,28 +1,9 @@
 <?php
 namespace Skeleton;
 
-use Skeleton\CMB2\CMB2_Hooks;
-use Skeleton\Walker\Walker_Hooks;
-use Skeleton\Webfonts\Webfonts_Hooks;
-use Skeleton\Iconfonts\Iconfonts_Hooks;
-use Skeleton\Container\Container;
-
-final class Skeleton extends Container {
+final class Skeleton {
+	/* Constants */
 	const VERSION = '0.3.1';
-
-	/**
-	 * All of the custom post types.
-	 *
-	 * @var array
-	 */
-	protected $post_types = array();
-
-	/**
-	 * All of the custom taxonomies.
-	 *
-	 * @var array
-	 */
-	protected $taxonomies = array();
 
 	/**
 	 * The current globally available container (if any).
@@ -30,6 +11,20 @@ final class Skeleton extends Container {
 	 * @var static
 	 */
 	protected static $instance;
+
+	/**
+	 * Field manager instance.
+	 *
+	 * @var Manager
+	 */
+	protected $fields;
+
+	/**
+	 * Wwebfonts manager instance.
+	 *
+	 * @var Webfonts
+	 */
+	protected $webfonts;
 
 	/**
 	 * Set the globally available instance of the container.
@@ -45,63 +40,49 @@ final class Skeleton extends Container {
 	}
 
 	/**
-	 * Instantiate the container.
-	 *
-	 * Objects and parameters can be passed as argument to the constructor.
-	 *
-	 * @param array $values The parameters or objects.
+	 * Instantiate the Skeleton.
 	 */
-	public function __construct( array $values = array() ) {
-		parent::__construct( $values );
-
-		define( 'SKELETON_VERSION', static::VERSION );
-
-		$this['path'] = plugin_dir_path( __DIR__ );
-		$this['url']  = plugin_dir_url( __DIR__ );
-
-		// Register core hooks.
-		$this->trigger( new CMB2_Hooks );
-		$this->trigger( new Ajax_Hooks );
-		$this->trigger( new Scripts_Hooks );
-		$this->trigger( new Webfonts_Hooks );
-		$this->trigger( new Walker_Hooks );
+	public function __construct() {
+		$this->fields = new Fields\Manager;
+		$this->webfonts = new Webfonts\Webfonts;
 
 		static::$instance = $this;
 	}
 
 	/**
-	 * Attach a custom post type to the container.
+	 * Returns webfonts instance.
 	 *
-	 * @param Post_Type $post_type Custom post type class.
+	 * @return Webfonts
 	 */
-	public function bind_post_type( Post_Type $post_type ) {
-		// $name = $post_type->get_instance()->name;
-		$this->post_types[] = $post_type;
+	public function get_webfonts() {
+		return $this->webfonts;
 	}
 
 	/**
-	 * Attach a custom taxonomy to the container.
+	 * Returns CMB2 fields manager.
 	 *
-	 * @param Taxonomy $taxonomy Custom taxonomy class.
+	 * @return Manager
 	 */
-	public function bind_taxonomy( Taxonomy $taxonomy ) {
-		// $name = $taxonomy->get_instance()->name;
-		$this->taxonomies[] = $taxonomy;
+	public function get_fields() {
+		return $this->fields;
 	}
 
 	/**
-	 * Bootstrap the Skeleton.
+	 * Returns directory url.
+	 *
+	 * @return string
 	 */
-	public function boot() {
-		parent::boot();
+	public function get_dir_url() {
+		return plugin_dir_url( __DIR__ );
+	}
 
-		foreach ( $this->post_types as $post_type ) {
-			$post_type->register();
-		}
-
-		foreach ( $this->taxonomies as $taxonomy ) {
-			$taxonomy->register();
-		}
+	/**
+	 * Returns directory path.
+	 *
+	 * @return string
+	 */
+	public function get_dir_path() {
+		return plugin_dir_path( __DIR__ );
 	}
 
 	/**
@@ -110,10 +91,50 @@ final class Skeleton extends Container {
 	 * @return void
 	 */
 	public function run() {
+		// Doing CMB2 hooks.
+		new CMB2\CMB2_Hooks;
+		new CMB2\Backup_Ajax;
+
+		// Register custom fields.
+		$this->fields->register_fields();
+
+		// Register and enqueue admin scripts.
+		add_action( 'admin_enqueue_scripts', array( $this, '_admin_register_scripts' ), 20 );
+
 		do_action( 'skeleton/init', $this );
+	}
 
-		$this->boot();
+	/**
+	 * Enqueue admin scripts.
+	 */
+	public function _admin_register_scripts() {
+		$skeleton_url = $this->get_dir_url();
 
-		do_action( 'skeleton/after_init', $this );
+		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG == true ) ? '' : '.min';
+		$version = static::VERSION;
+
+		// Register vendor, plugins styles & scripts.
+		wp_register_script( 'ace-editor', '//cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js', array(), '1.2.6', true );
+		wp_register_script( 'ace-ext-language_tools', '//cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ext-language_tools.js', array( 'ace-editor' ), '1.2.6', true );
+
+		wp_register_style( 'jquery-ui-slider-pips', $skeleton_url . 'css/jquery-ui-slider-pips.css', array(), '1.11.4' );
+		wp_register_script( 'jquery-ui-slider-pips', $skeleton_url . 'js/plugins/jquery-ui-slider-pips.min.js', array( 'jquery-ui-slider' ), '1.11.4', true );
+		wp_register_script( 'wp-color-picker-alpha', $skeleton_url . 'js/plugins/wp-color-picker-alpha.min.js', array( 'wp-color-picker' ), '1.2.2', true );
+
+		wp_register_style( 'skeleton', $skeleton_url . 'css/skeleton' . $suffix . '.css', array(), $version );
+		wp_register_script( 'skeleton', $skeleton_url . 'js/skeleton' . $suffix . '.js', array( 'wp-util', 'jquery-effects-highlight' ), $version, true );
+
+		// Enqueue Skeleton.
+		wp_enqueue_style( 'skeleton' );
+		wp_enqueue_script( 'skeleton' );
+
+		wp_localize_script( 'skeleton', 'Skeleton', array(
+			'ajaxurl' => admin_url( 'admin-ajax.php' ),
+			'strings' => array(
+				'warning' => esc_html__( 'Are you sure you want to do this?', 'skeleton' ),
+			),
+		) );
+
+		do_action( 'skeleton/register_admin_scripts' );
 	}
 }

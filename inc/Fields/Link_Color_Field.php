@@ -1,10 +1,9 @@
 <?php
-namespace Skeleton\CMB2\Fields;
+namespace Skeleton\Fields;
 
-use Skeleton\Support\Utils;
 use Skeleton\Support\Multidimensional;
 
-class Link_Color_Field extends Field_Abstract {
+class Link_Color_Field extends CMB2_Field {
 	/**
 	 * Adding this field to the blacklist of repeatable field-types.
 	 *
@@ -86,7 +85,7 @@ class Link_Color_Field extends Field_Abstract {
 
 		// Save extends fields first.
 		foreach ( array( 'hover', 'active' ) as $key ) {
-			$field_id = Utils::clone_id( $base_id, $key );
+			$field_id = $this->clone_id( $base_id, $key );
 			$field = $sanitizer->_new_supporting_field( $field_id );
 
 			// Get data in data_to_save with multidimensional support.

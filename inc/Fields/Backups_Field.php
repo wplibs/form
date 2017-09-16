@@ -1,9 +1,9 @@
 <?php
-namespace Skeleton\CMB2\Fields;
+namespace Skeleton\Fields;
 
-use Skeleton\CMB2\Backups;
+use Skeleton\CMB2\Backup;
 
-class Backups_Field extends Field_Abstract {
+class Backups_Field extends CMB2_Field {
 	/**
 	 * Adding this field to the blacklist of repeatable field-types.
 	 *
@@ -22,12 +22,11 @@ class Backups_Field extends Field_Abstract {
 	 */
 	public function output( $field, $escaped_value, $object_id, $object_type, $field_type_object ) {
 		$cmb2 = $field->get_cmb();
-
 		if ( is_wp_error( $cmb2 ) ) {
 			return;
 		}
 
-		$backups = new Backups( $cmb2 ); ?>
+		$backups = new Backup( $cmb2 ); ?>
 
 		<div class="cmb2-form-backup">
 			<h4><?php esc_html_e( 'Backup', 'skeleton' ); ?></h4>

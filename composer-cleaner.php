@@ -1,12 +1,11 @@
 <?php
-namespace Skeleton\Support;
 
 use Composer\Composer;
 use Composer\Script\Event;
 use Composer\Util\Filesystem;
 use Composer\Package\BasePackage;
 
-class Composer_Scripts {
+class Composer_Cleaner {
 	/**
 	 * Handle the post-install Composer event.
 	 *

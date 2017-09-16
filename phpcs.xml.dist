@@ -2,7 +2,7 @@
 <ruleset name="WP Awethemes">
   <description>A custom set of rules to check for a Awethemes WordPress project</description>
 
-  <config name="testVersion" value="5.3-7.1" />
+  <config name="testVersion" value="5.4-7.1" />
 
   <!-- Exclude patterns -->
   <exclude-pattern>tests/*</exclude-pattern>

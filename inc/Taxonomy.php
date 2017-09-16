@@ -1,11 +1,5 @@
 <?php
-
 namespace Skeleton;
-
-use CMB2_Boxes;
-use RuntimeException;
-use Skeleton\WP_Option;
-use Skeleton\Skeleton;
 
 /**
  * Taxonomy registration starter class.
@@ -88,7 +82,7 @@ class Taxonomy {
 	 */
 	public function get_instance() {
 		if ( is_null( $this->taxonomy_object ) ) {
-			throw new RuntimeException( sprintf( esc_html__( '`%s` taxonomy has never been registered before.', 'skeleton' ), $this->taxonomy ) );
+			throw new \RuntimeException( "The '{$this->taxonomy}' taxonomy has never been registered before." );
 		}
 
 		return $this->taxonomy_object;
@@ -102,14 +96,6 @@ class Taxonomy {
 	 */
 	public function set( array $taxonomy_args = array() ) {
 		$this->taxonomy_args = $this->parser_args( $taxonomy_args );
-
-		if ( doing_filter( 'skeleton/init' ) ) {
-			// If inside an `skeleton/init` action, simply call the register method.
-			$this->register();
-		} else {
-			// Out of an `skeleton/init` action, call the hook.
-			add_action( 'skeleton/init', array( $this, 'register' ) );
-		}
 
 		return $this;
 	}
@@ -134,9 +120,6 @@ class Taxonomy {
 
 		// Success. Set args to what WP returns.
 		$this->taxonomy_object = $wp_taxonomies[ $this->taxonomy ];
-
-		// Add this taxonomy to taxonomies container.
-		skeleton()->bind_taxonomy( $this );
 	}
 
 	/**
@@ -213,9 +196,9 @@ class Taxonomy {
 	 */
 	public function add_meta_box( $cmb_id, $callback = null ) {
 		if ( 'default' === $cmb_id ) {
-			$cmb_id = $this->taxonomy . '/default';
+			$cmb_id = $this->taxonomy . '_default';
 		} else {
-			$cmb_id = $this->taxonomy . '/' . $cmb_id;
+			$cmb_id = $this->taxonomy . '_' . $cmb_id;
 		}
 
 		$metabox = new Metabox( $cmb_id, array(
@@ -237,7 +220,7 @@ class Taxonomy {
 	 * @return int|false
 	 */
 	public function add_field( array $field ) {
-		return $this->default_metabox()->add_field( $field );
+		return $this->get_default_metabox()->add_field( $field );
 	}
 
 	/**
@@ -248,7 +231,7 @@ class Taxonomy {
 	 * @return \Skeleton\CMB2\Group
 	 */
 	public function add_group( $id, $callback = null ) {
-		return $this->default_metabox()->add_group( $id, $callback );
+		return $this->get_default_metabox()->add_group( $id, $callback );
 	}
 
 	/**
@@ -256,16 +239,16 @@ class Taxonomy {
 	 *
 	 * @return \Skeleton\Metabox
 	 */
-	protected function default_metabox() {
-		$metabox = CMB2_Boxes::get( $this->taxonomy . '/default' );
+	protected function get_default_metabox() {
+		$metabox = \CMB2_Boxes::get( $this->taxonomy . '_default' );
 
-		if ( $metabox ) {
-			return $metabox;
+		if ( ! $metabox ) {
+			$metabox = $this->add_meta_box( 'default', function ( $mb ) {
+				$mb->set_priority( 0 );
+				$mb->vertical_tabs( false );
+			});
 		}
 
-		return $this->add_meta_box( 'default', function ( $mb ) {
-			$mb->set_priority( 0 );
-			$mb->vertical_tabs( false );
-		});
+		return $metabox;
 	}
 }

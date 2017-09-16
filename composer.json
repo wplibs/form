@@ -1,8 +1,7 @@
 {
     "name": "awethemes/skeleton",
     "description": "A WordPress framework made for Awethemes projects.",
-    "type": "wordpress-plugin",
-    "license": "GPL-2.0+",
+    "license": "GPLv2 or later",
     "authors": [
         {
             "name": "awethemes",
@@ -14,10 +13,17 @@
         }
     ],
     "require": {
-        "php": ">=5.3.9",
-        "pimple/pimple": "^3.2",
+        "php": ">=5.4.0",
         "vlucas/valitron": "^1.4",
         "webdevstudios/cmb2": "^2.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Skeleton\\": "inc/"
+        },
+        "files": [
+            "inc/Support/helpers.php"
+        ]
     },
     "scripts": {
         "install-unit-tests": [
@@ -25,6 +31,8 @@
         ]
     },
     "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true,
         "preferred-install": "dist"
     }
 }

@@ -1,13 +1,20 @@
 <?php
-namespace Skeleton\CMB2\Fields;
+namespace Skeleton\Fields;
 
-class Toggle_Field extends Field_Abstract {
+class HTML_Code_Field extends CMB2_Field {
 	/**
-	 * Adding this field to the blacklist of repeatable field-types.
+	 * Text editor mode.
 	 *
-	 * @var boolean
+	 * @var string
 	 */
-	public $repeatable = false;
+	protected $mode = 'html';
+
+	/**
+	 * Escape sanitization callback.
+	 *
+	 * @var string
+	 */
+	protected $escape_callback = 'wp_kses_post';
 
 	/**
 	 * Render custom field type callback.
@@ -19,25 +26,16 @@ class Toggle_Field extends Field_Abstract {
 	 * @param \CMB2_Types $field_type_object  The `CMB2_Types` object.
 	 */
 	public function output( $field, $escaped_value, $object_id, $object_type, $field_type_object ) {
-		$args = array(
-			'type'  => 'checkbox',
-			'value' => 'on',
-			'class' => 'onoffswitch-checkbox',
-			'desc'  => sprintf( '<label class="onoffswitch-label" for="%s"></label>', $field_type_object->_id() ),
-		);
+		printf( '<pre id="%s-code-editor" class="cmb2-code-editor"></pre>', esc_attr( $field_type_object->_id() ) );
 
-		if ( ! empty( $escaped_value ) ) {
-			$args['checked'] = 'checked';
-		}
+		print $field_type_object->textarea( array( // WPCS: XSS OK.
+			'style'     => 'display: none',
+			'class'     => 'cmb2-textarea-code',
+			'value'     => $this->escape_callback ? $field->escaped_value( $this->escape_callback ) : $field->value(),
+			'data-mode' => $this->mode,
+		));
 
-		$type = new \CMB2_Type_Text( $field_type_object );
-
-		printf( // WPCS: XSS OK.
-			'<div class="onoffswitch %3$s">%1$s</div> <p class="cmb2-metabox-description">%2$s</p>',
-			$type->render( $args ),
-			$field_type_object->_desc(),
-			esc_attr( $field->prop( 'styled' ) )
-		);
+		$field->add_js_dependencies( array( 'ace-editor', 'ace-ext-language_tools' ) );
 	}
 
 	/**
@@ -50,6 +48,6 @@ class Toggle_Field extends Field_Abstract {
 	 * @param \CMB2_Sanitize $sanitizer  The `CMB2_Sanitize` object.
 	 */
 	public function sanitization( $override_value, $value, $object_id, $field_args, $sanitizer ) {
-		return $sanitizer->checkbox();
+		return wp_kses_post( $value );
 	}
 }

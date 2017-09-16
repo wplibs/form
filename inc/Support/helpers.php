@@ -2,7 +2,6 @@
 
 use Skeleton\Skeleton;
 use Skeleton\Support\WP_Data;
-use Skeleton\Support\Autoload;
 
 if ( ! function_exists( 'dd' ) ) {
 	/**
@@ -44,31 +43,15 @@ if ( ! function_exists( 'wp_data' ) ) {
 	}
 }
 
-if ( ! function_exists( 'skeleton_psr4_autoloader' ) ) :
+if ( ! function_exists( 'skeleton_render_field' ) ) :
 	/**
-	 * Register PSR-4 autoload classess.
+	 * Tiny helper render a field.
 	 *
-	 * @param  string|array $namespace A string of namespace or an array with
-	 *                                 namespace and directory to autoload.
-	 * @param  string       $base_dir  Autoload directory if $namespace is string.
+	 * @param  CMB2_Field $field CMB2 Field instance.
 	 * @return void
 	 */
-	function skeleton_psr4_autoloader( $namespace, $base_dir = null ) {
-		if ( ! class_exists( 'Skeleton\\Support\\Autoload', false ) ) {
-			require_once trailingslashit( __DIR__ ) . 'Support/Autoload.php';
-		}
-
-		$loader = new Autoload;
-
-		if ( is_string( $namespace ) && $base_dir ) {
-			$loader->add_namespace( $namespace, $base_dir );
-		} elseif ( is_array( $namespace ) ) {
-			foreach ( $namespace as $prefix => $dir ) {
-				$loader->add_namespace( $prefix, $dir );
-			}
-		}
-
-		$loader->register();
+	function skeleton_render_field( CMB2_Field $field ) {
+		(new CMB2_Types( $field ))->render();
 	}
 endif;
 
@@ -82,7 +65,7 @@ if ( ! function_exists( 'skeleton_display_field_errors' ) ) :
 	function skeleton_display_field_errors( CMB2_Field $field ) {
 		$cmb2 = $field->get_cmb();
 
-		// Bail if not see a CMB2 instance.
+		// Don't show if invalid CMB2 instance.
 		if ( ! $cmb2 || is_wp_error( $cmb2 ) ) {
 			return;
 		}
@@ -94,19 +77,5 @@ if ( ! function_exists( 'skeleton_display_field_errors' ) ) :
 			$error_message = is_string( $errors[ $id ] ) ? $errors[ $id ] : $errors[ $id ][0];
 			printf( '<p class="cmb2-validate-error">%s</p>', $error_message ); // WPCS: XSS OK.
 		}
-	}
-endif;
-
-if ( ! function_exists( 'skeleton_render_field' ) ) :
-	/**
-	 * Tiny helper render a field.
-	 *
-	 * @param  CMB2_Field $field CMB2 Field instance.
-	 * @return void
-	 */
-	function skeleton_render_field( CMB2_Field $field ) {
-		$field_type = new CMB2_Types( $field );
-
-		$field_type->render();
 	}
 endif;
