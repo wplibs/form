@@ -18,14 +18,9 @@ if ( ! function_exists( 'skeleton' ) ) {
 	/**
 	 * Get Skeleton instance.
 	 *
-	 * @param  string $key Optional parameter in the container.
-	 * @return Skeleton|mixed
+	 * @return Skeleton
 	 */
-	function skeleton( $key = null ) {
-		if ( ! is_null( $key ) ) {
-			return Skeleton::get_instance()->make( $key );
-		}
-
+	function skeleton() {
 		return Skeleton::get_instance();
 	}
 }
