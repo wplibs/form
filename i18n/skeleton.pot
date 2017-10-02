@@ -141,259 +141,251 @@ msgstr ""
 msgid "One or more error occurred."
 msgstr ""
 
-#: inc/Ajax_Hooks.php:97
-msgid "Invalid CMB2 ID."
-msgstr ""
-
-#: inc/Post_Type.php:82
-msgid "`%s` post type has never been registered before."
-msgstr ""
-
-#: inc/Post_Type.php:144, inc/Post_Type.php:145, inc/Taxonomy.php:164
+#: inc/Post_Type.php:138, inc/Post_Type.php:139, inc/Taxonomy.php:147
 msgid "Add New %s"
 msgstr ""
 
-#: inc/Post_Type.php:146, inc/Taxonomy.php:161
+#: inc/Post_Type.php:140, inc/Taxonomy.php:144
 msgid "Edit %s"
 msgstr ""
 
-#: inc/Post_Type.php:147
+#: inc/Post_Type.php:141
 msgid "New %s"
 msgstr ""
 
-#: inc/Post_Type.php:148, inc/Taxonomy.php:160
+#: inc/Post_Type.php:142, inc/Taxonomy.php:143
 msgid "All %s"
 msgstr ""
 
-#: inc/Post_Type.php:149, inc/Taxonomy.php:162
+#: inc/Post_Type.php:143, inc/Taxonomy.php:145
 msgid "View %s"
 msgstr ""
 
-#: inc/Post_Type.php:150, inc/Taxonomy.php:159
+#: inc/Post_Type.php:144, inc/Taxonomy.php:142
 msgid "Search %s"
 msgstr ""
 
-#: inc/Post_Type.php:151, inc/Taxonomy.php:167
+#: inc/Post_Type.php:145, inc/Taxonomy.php:150
 msgid "No %s"
 msgstr ""
 
-#: inc/Post_Type.php:152
+#: inc/Post_Type.php:146
 msgid "No %s found in Trash"
 msgstr ""
 
-#: inc/Post_Type.php:153, inc/Taxonomy.php:171
+#: inc/Post_Type.php:147, inc/Taxonomy.php:154
 msgid "Parent %s:"
 msgstr ""
 
-#: inc/Post_Type.php:155
+#: inc/Post_Type.php:149
 msgid "Insert into %s"
 msgstr ""
 
-#: inc/Post_Type.php:156
+#: inc/Post_Type.php:150
 msgid "Uploaded to this %s"
 msgstr ""
 
-#: inc/Post_Type.php:157
+#: inc/Post_Type.php:151
 msgid "%s list"
 msgstr ""
 
-#: inc/Post_Type.php:158
+#: inc/Post_Type.php:152
 msgid "%s list navigation"
 msgstr ""
 
-#: inc/Post_Type.php:159
+#: inc/Post_Type.php:153
 msgid "Filter %s list"
 msgstr ""
 
-#: inc/Post_Type.php:196
+#: inc/Post_Type.php:190
 msgid "Custom field updated."
 msgstr ""
 
-#: inc/Post_Type.php:197
+#: inc/Post_Type.php:191
 msgid "Custom field deleted."
 msgstr ""
 
-#: inc/Post_Type.php:198, inc/Post_Type.php:212
+#: inc/Post_Type.php:192, inc/Post_Type.php:206
 msgid "%1$s updated."
 msgstr ""
 
-#: inc/Post_Type.php:200
+#: inc/Post_Type.php:194
 msgid "%1$s restored to revision from %2$s"
 msgstr ""
 
-#: inc/Post_Type.php:201
+#: inc/Post_Type.php:195
 msgid "%1$s saved."
 msgstr ""
 
-#: inc/Post_Type.php:205
+#: inc/Post_Type.php:199
 msgid "%1$s updated. <a href=\"%2$s\">View %1$s</a>"
 msgstr ""
 
-#: inc/Post_Type.php:206
+#: inc/Post_Type.php:200
 msgid "%1$s published. <a href=\"%2$s\">View %1$s</a>"
 msgstr ""
 
-#: inc/Post_Type.php:207
+#: inc/Post_Type.php:201
 msgid "%1$s submitted. <a target=\"_blank\" href=\"%2$s\">Preview %1$s</a>"
 msgstr ""
 
 #. translators: Publish box date format, see http://php.net/date.
-#: inc/Post_Type.php:209
+#: inc/Post_Type.php:203
 msgid "%1$s scheduled for: <strong>%2$s</strong>. <a target=\"_blank\" href=\"%3$s\">Preview %1$s</a>"
 msgstr ""
 
-#: inc/Post_Type.php:210
+#: inc/Post_Type.php:204
 msgid "%1$s draft updated. <a target=\"_blank\" href=\"%2$s\">Preview %1$s</a>"
 msgstr ""
 
-#: inc/Post_Type.php:213
+#: inc/Post_Type.php:207
 msgid "%1$s published."
 msgstr ""
 
-#: inc/Post_Type.php:214
+#: inc/Post_Type.php:208
 msgid "%1$s submitted."
 msgstr ""
 
 #. translators: Publish box date format, see http://php.net/date.
-#: inc/Post_Type.php:216
+#: inc/Post_Type.php:210
 msgid "%1$s scheduled for: <strong>%2$s</strong>."
 msgstr ""
 
-#: inc/Post_Type.php:217
+#: inc/Post_Type.php:211
 msgid "%1$s draft updated."
 msgstr ""
 
-#: inc/Post_Type.php:235
+#: inc/Post_Type.php:229
 msgid "%1$s %2$s updated."
 msgid_plural "%1$s %3$s updated."
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/Post_Type.php:236
+#: inc/Post_Type.php:230
 msgid "%1$s %2$s not updated, somebody is editing it."
 msgid_plural "%1$s %3$s not updated, somebody is editing them."
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/Post_Type.php:237
+#: inc/Post_Type.php:231
 msgid "%1$s %2$s permanently deleted."
 msgid_plural "%1$s %3$s permanently deleted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/Post_Type.php:238
+#: inc/Post_Type.php:232
 msgid "%1$s %2$s moved to the Trash."
 msgid_plural "%1$s %3$s moved to the Trash."
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/Post_Type.php:239
+#: inc/Post_Type.php:233
 msgid "%1$s %2$s restored from the Trash."
 msgid_plural "%1$s %3$s restored from the Trash."
 msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %s: singular
-#: inc/Post_Type.php:254
+#: inc/Post_Type.php:248
 msgid "%s Title"
 msgstr ""
 
-#: inc/Scripts_Hooks.php:55
+#: inc/Skeleton.php:134
 msgid "Are you sure you want to do this?"
 msgstr ""
 
-#: inc/Taxonomy.php:91
-msgid "`%s` taxonomy has never been registered before."
-msgstr ""
-
-#: inc/Taxonomy.php:163
+#: inc/Taxonomy.php:146
 msgid "Update %s"
 msgstr ""
 
-#: inc/Taxonomy.php:165
+#: inc/Taxonomy.php:148
 msgid "New %s Name"
 msgstr ""
 
-#: inc/Taxonomy.php:166
+#: inc/Taxonomy.php:149
 msgid "No %s found."
 msgstr ""
 
-#: inc/Taxonomy.php:170
+#: inc/Taxonomy.php:153
 msgid "Parent %s"
 msgstr ""
 
-#: inc/Taxonomy.php:174
+#: inc/Taxonomy.php:157
 msgid "Popular %s"
 msgstr ""
 
-#: inc/Taxonomy.php:175
+#: inc/Taxonomy.php:158
 msgid "Separate %s with commas"
 msgstr ""
 
-#: inc/Taxonomy.php:176
+#: inc/Taxonomy.php:159
 msgid "Add or remove %s"
 msgstr ""
 
-#: inc/Taxonomy.php:177
+#: inc/Taxonomy.php:160
 msgid "Choose from the most used %s"
 msgstr ""
 
-#: inc/CMB2/Backups.php:77
+#: inc/CMB2/Backup.php:77
 msgid "Nothing to backup."
 msgstr ""
 
-#: inc/CMB2/Backups.php:83
+#: inc/CMB2/Backup.php:83
 msgid "Invalid payload received."
+msgstr ""
+
+#: inc/CMB2/Backup_Ajax.php:94
+msgid "Invalid CMB2 ID."
 msgstr ""
 
 #: inc/CMB2/CMB2.php:79
 msgid "Set field priority instead of."
 msgstr ""
 
-#: inc/Webfonts/Webfonts.php:154
-msgid "Web Safe Fonts"
-msgstr ""
-
-#: inc/Webfonts/Webfonts.php:158
-msgid "Google Fonts"
-msgstr ""
-
-#: inc/CMB2/Fields/Backups_Field.php:33
+#: inc/Fields/Backups_Field.php:32
 msgid "Backup"
 msgstr ""
 
-#: inc/CMB2/Fields/Backups_Field.php:34
+#: inc/Fields/Backups_Field.php:33
 msgid "Here you can copy / <a href=\"%s\" target=\"_blank\">download</a> current settings. Keep this safe as you can use it as a backup should anything go wrong."
 msgstr ""
 
-#: inc/CMB2/Fields/Backups_Field.php:41
+#: inc/Fields/Backups_Field.php:40
 msgid "Restore a backup"
 msgstr ""
 
-#: inc/CMB2/Fields/Backups_Field.php:42
+#: inc/Fields/Backups_Field.php:41
 msgid "Copy-paste your backup string here:"
 msgstr ""
 
-#: inc/CMB2/Fields/Backups_Field.php:46
+#: inc/Fields/Backups_Field.php:45
 msgid "Backup Now"
 msgstr ""
 
-#: inc/CMB2/Fields/Backups_Field.php:47
+#: inc/Fields/Backups_Field.php:46
 msgid "or <a href=\"%s\" class=\"cmb2-reset-backup\">reset</a> to defaults."
 msgstr ""
 
-#: inc/CMB2/Fields/Backups_Field.php:50
+#: inc/Fields/Backups_Field.php:49
 msgid "Warning! This will overwrite all existing options, please proceed with caution!"
 msgstr ""
 
-#: inc/CMB2/Fields/Link_Color_Field.php:36
+#: inc/Fields/Link_Color_Field.php:35
 msgid "Color"
 msgstr ""
 
-#: inc/CMB2/Fields/Link_Color_Field.php:37
+#: inc/Fields/Link_Color_Field.php:36
 msgid "Hover color"
 msgstr ""
 
-#: inc/CMB2/Fields/Link_Color_Field.php:38
+#: inc/Fields/Link_Color_Field.php:37
 msgid "Active color"
+msgstr ""
+
+#: inc/Webfonts/Webfonts.php:145
+msgid "Web Safe Fonts"
+msgstr ""
+
+#: inc/Webfonts/Webfonts.php:149
+msgid "Google Fonts"
 msgstr ""
