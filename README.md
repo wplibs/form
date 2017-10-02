@@ -1,4 +1,4 @@
-# Skeleton
+# Skeleton [![Build Status](https://travis-ci.org/awethemes/skeleton.svg?branch=master)](https://travis-ci.org/awethemes/skeleton)
 
 A complete framework for WordPress, base on top of [CMB2](https://github.com/CMB2/CMB2).
 
