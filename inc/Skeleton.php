@@ -95,13 +95,13 @@ final class Skeleton {
 		new CMB2\CMB2_Hooks;
 		new CMB2\Backup_Ajax;
 
+		do_action( 'skeleton/init', $this );
+
 		// Register custom fields.
 		$this->fields->register_fields();
 
 		// Register and enqueue admin scripts.
 		add_action( 'admin_enqueue_scripts', array( $this, '_admin_register_scripts' ), 20 );
-
-		do_action( 'skeleton/init', $this );
 	}
 
 	/**
