@@ -2,14 +2,6 @@
 
 A complete framework for WordPress, base on top of [CMB2](https://github.com/CMB2/CMB2).
 
-## Table of Contents
-
-- Features
-- Installation
-- Documents
-- Known Issues
-- Contribution
-
 ## Features
 
 - Metabox any where.
@@ -19,15 +11,15 @@ A complete framework for WordPress, base on top of [CMB2](https://github.com/CMB
 
 ## Installation
 
-- TODO:
+Install via [Composer](https://getcomposer.org)
+
+```
+composer require awethemes/skeleton
+```
 
 ## Documents
 
 No document right now, so please checkout [example.php](https://github.com/awethemes/skeleton/blob/master/example.php)
-
-## Known Issues
-
-- TODO:
 
 ## Contribution
 
