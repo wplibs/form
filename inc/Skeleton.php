@@ -3,7 +3,7 @@ namespace Skeleton;
 
 final class Skeleton {
 	/* Constants */
-	const VERSION = '0.3.1';
+	const VERSION = '1.0.0';
 
 	/**
 	 * The current globally available container (if any).
