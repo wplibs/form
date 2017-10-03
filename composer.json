@@ -20,10 +20,7 @@
     "autoload": {
         "psr-4": {
             "Skeleton\\": "inc/"
-        },
-        "files": [
-            "inc/Support/helpers.php"
-        ]
+        }
     },
     "scripts": {
         "install-unit-tests": [
