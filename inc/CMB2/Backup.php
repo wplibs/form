@@ -1,7 +1,6 @@
 <?php
 namespace Skeleton\CMB2;
 
-use CMB2;
 use Skeleton\Admin_Page;
 
 class Backup {
