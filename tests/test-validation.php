@@ -32,8 +32,24 @@ class ValidationTest extends WP_UnitTestCase {
 		$this->assertTrue($v->passes());
 	}
 
-	function test_string_rules() {
+	function test_in_rules_fails() {
+		$data = [ 'jobs' => 'none' ];
 
+		$v = new Validator( $data, [
+			'jobs' => 'in:job1,job2',
+		]);
+
+		$this->assertTrue($v->fails());
+	}
+
+	function test_in_rules_pasess() {
+		$data = [ 'jobs' => 'job2' ];
+
+		$v = new Validator( $data, [
+			'jobs' => 'in:job1,job2',
+		]);
+
+		$this->assertTrue($v->passes());
 	}
 
 	function test_array_rules() {
