@@ -40,7 +40,8 @@
 /* Input Group */
 .skeleton-input-group {
   margin-right: 15px;
-  display: inline-block; }
+  display: inline-block;
+  font-size: 0; }
 
 .skeleton-input-group input,
 .skeleton-input-group__addon {
@@ -51,12 +52,15 @@
   margin-right: 0; }
 
 .skeleton-input-group__addon {
-  white-space: nowrap;
-  padding: 6px 12px;
   color: #444;
-  line-height: 1;
   font-weight: normal;
   text-align: center;
+  height: 31px;
+  line-height: 30px;
+  white-space: nowrap;
+  font-size: 14px;
+  padding: 0 12px;
+  box-sizing: border-box;
   border: 1px solid #ddd;
   background-color: #f1f1f1; }
   .skeleton-input-group__addon:first-child {
