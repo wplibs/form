@@ -12,15 +12,17 @@
   <rule ref="PHPCompatibility" />
 
   <!-- Run against a second ruleset -->
-  <rule ref="WordPress-Extra" />
-
-  <rule ref="WordPress-Docs">
+  <rule ref="WordPress-Extra">
     <exclude name="Generic.Files.LowercasedFilename.NotFound" />
     <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
+    <exclude name="WordPress.Files.FileName.InvalidClassFileName" />
+    <exclude name="WordPress.Arrays.ArrayDeclarationSpacing.AssociativeKeyFound" />
+    <exclude name="WordPress.Classes.ClassInstantiation.MissingParenthesis" />
+  </rule>
+
+  <rule ref="WordPress-Docs">
     <exclude name="Squiz.Commenting.FileComment.Missing" />
     <exclude name="Squiz.Commenting.ClassComment.Missing" />
-    <exclude name="Squiz.Commenting.FunctionCommentThrowTag.Missing" />
-    <exclude name="WordPress.Files.FileName.UnderscoresNotAllowed" />
-    <exclude name="WordPress.Files.FileName.InvalidClassFileName" />
+    <exclude name="Squiz.Commenting.FunctionComment.EmptyThrows" />
   </rule>
 </ruleset>
