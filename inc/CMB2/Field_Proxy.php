@@ -1,9 +1,6 @@
 <?php
 namespace Skeleton\CMB2;
 
-use CMB2;
-use CMB2_Field;
-
 class Field_Proxy {
 	/**
 	 * CMB2 form instance.
@@ -22,10 +19,10 @@ class Field_Proxy {
 	/**
 	 * Create a new proxy instance.
 	 *
-	 * @param CMB2       $form  CMB2 Form instance.
-	 * @param CMB2_Field $field CMB2 Field instance.
+	 * @param CMB2        $form  CMB2 Form instance.
+	 * @param \CMB2_Field $field CMB2 Field instance.
 	 */
-	public function __construct( CMB2 $form, CMB2_Field $field ) {
+	public function __construct( CMB2 $form, \CMB2_Field $field ) {
 		$this->form = $form;
 		$this->field = $field;
 	}
