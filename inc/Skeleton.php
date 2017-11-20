@@ -119,7 +119,7 @@ final class Skeleton {
 
 		wp_register_style( 'jquery-ui-slider-pips', $skeleton_url . 'css/jquery-ui-slider-pips.css', array(), '1.11.4' );
 		wp_register_script( 'jquery-ui-slider-pips', $skeleton_url . 'js/plugins/jquery-ui-slider-pips.min.js', array( 'jquery-ui-slider' ), '1.11.4', true );
-		wp_register_script( 'wp-color-picker-alpha', $skeleton_url . 'js/plugins/wp-color-picker-alpha.min.js', array( 'wp-color-picker' ), '1.2.2', true );
+		wp_register_script( 'wp-color-picker-alpha', $skeleton_url . 'js/plugins/wp-color-picker-alpha.min.js', array( 'wp-color-picker' ), '2.1.2', true );
 
 		wp_register_style( 'skeleton', $skeleton_url . 'css/skeleton' . $suffix . '.css', array(), $version );
 		wp_register_script( 'skeleton', $skeleton_url . 'js/skeleton' . $suffix . '.js', array( 'wp-util', 'jquery-effects-highlight' ), $version, true );
