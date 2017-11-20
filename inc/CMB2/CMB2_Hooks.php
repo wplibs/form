@@ -31,7 +31,7 @@ class CMB2_Hooks {
 	public function sanitize_checkbox( $override_value, $value ) {
 		// Return 0 instead of false if null value given. This hack for
 		// checkbox or checkbox-like can be setting true as default value.
-		return is_null( $value ) ? 0 : $value;
+		return is_null( $value ) ? '0' : $value;
 	}
 
 	/**
