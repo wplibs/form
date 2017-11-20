@@ -326,11 +326,11 @@ msgstr ""
 msgid "Choose from the most used %s"
 msgstr ""
 
-#: inc/CMB2/Backup.php:77
+#: inc/CMB2/Backup.php:76
 msgid "Nothing to backup."
 msgstr ""
 
-#: inc/CMB2/Backup.php:83
+#: inc/CMB2/Backup.php:82
 msgid "Invalid payload received."
 msgstr ""
 
