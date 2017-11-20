@@ -43,10 +43,12 @@ final class Skeleton {
 	 * Instantiate the Skeleton.
 	 */
 	public function __construct() {
+		static::$instance = $this;
+
 		$this->fields = new Fields\Manager;
 		$this->webfonts = new Webfonts\Webfonts;
 
-		static::$instance = $this;
+		do_action( 'skeleton/loaded', $this );
 	}
 
 	/**

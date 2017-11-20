@@ -12,24 +12,8 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-if ( ! defined( 'AWETHEMES_SKELETON_LOADED' ) ) {
-	// First, init the bootstrap.
+if ( ! class_exists( 'Skeleton_Bootstrap_110', false ) ) {
 	require_once trailingslashit( __DIR__ ) . 'bootstrap.php';
 
-	require_once trailingslashit( __DIR__ ) . 'inc/Support/helpers.php';
-
-	define( 'SKELETON_VERSION', Skeleton\Skeleton::VERSION );
-
-	$skeleton = new Skeleton\Skeleton;
-
-	/**
-	 * Finally, we run Skeleton after `cmb2_init` fired.
-	 *
-	 * @hook skeleton/init
-	 * @hook skeleton/after_init
-	 */
-	add_action( 'cmb2_init', array( $skeleton, 'run' ) );
-
-	// Declare Skeleton is loaded.
-	define( 'AWETHEMES_SKELETON_LOADED', true );
+	new Skeleton_Bootstrap_110;
 }

@@ -12,9 +12,11 @@ class Typography_Field extends CMB2_Field {
 	 * @param \CMB2_Types $field_type_object  The `CMB2_Types` object.
 	 */
 	public function output( $field, $escaped_value, $object_id, $object_type, $field_type_object ) {
+		$manager = Skeleton::get_instance()->get_webfonts();
+
 		$options = '';
 
-		foreach ( skeleton()->get_webfonts()->get_all_fonts( 'assoc' ) as $fonts ) {
+		foreach ( $manager->get_all_fonts( 'assoc' ) as $fonts ) {
 			$options .= '<optgroup label="' . $fonts['label'] . '">';
 
 			foreach ( $fonts['fonts'] as $font_name => $font_info ) {
