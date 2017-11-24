@@ -25,7 +25,10 @@ class Manager {
 			'link_color'        => 'Skeleton\Fields\Link_Color_Field',
 			'rgba_colorpicker'  => 'Skeleton\Fields\Rgba_Colorpicker_Field',
 			'typography'        => 'Skeleton\Fields\Typography_Field',
+			'map'               => 'Skeleton\Fields\Map_Field',
 		));
+
+		add_action( 'admin_init', array( $this, 'register_google_map_api' ) );
 	}
 
 	/**
@@ -89,5 +92,22 @@ class Manager {
 			// Run custom hooks after done.
 			$field->hooks();
 		}
+	}
+
+	public function register_google_map_api(){
+	    add_settings_field(
+	        'myprefix_setting-id',
+	        'Google map API',
+	        array( $this, 'myprefix_setting_callback_function' ),
+	        'general',
+	        'default',
+	        array( 'label_for' => 'myprefix_setting-id' )
+	    );
+	}
+
+	public function myprefix_setting_callback_function($args){
+	    ?>
+			<input type="text">
+	    <?php
 	}
 }

@@ -130,6 +130,11 @@ final class Skeleton {
 		wp_enqueue_style( 'skeleton' );
 		wp_enqueue_script( 'skeleton' );
 
+		$google_api_key = apply_filters( 'skeleton/google_api_key', 'AIzaSyCXi6x5-3bVVXUnF7TNZtCOCigNPeNgnsw' );
+
+		wp_register_script( 'google-maps-api', '//maps.google.com/maps/api/js?key=' . $google_api_key . '&libraries=places', array(), $version, true );
+		wp_register_script( 'google-maps', $skeleton_url . 'js/fields/map.js', array( 'google-maps-api' ), $version );
+
 		wp_localize_script( 'skeleton', 'Skeleton', array(
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
 			'strings' => array(
