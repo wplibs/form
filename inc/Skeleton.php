@@ -130,9 +130,24 @@ final class Skeleton {
 		wp_enqueue_style( 'skeleton' );
 		wp_enqueue_script( 'skeleton' );
 
-		$google_api_key = apply_filters( 'skeleton/google_api_key', 'AIzaSyCXi6x5-3bVVXUnF7TNZtCOCigNPeNgnsw' );
+		/**
+		 * Filters Google API key.
+		 *
+		 * To get a Google API key, visit the following link:
+		 * https://developers.google.com/maps/documentation/javascript/get-api-key
+		 *
+		 * @since 1.1.1
+		 *
+		 * @param string $key Google API key.
+		 */
+		$google_api_key = apply_filters( 'skeleton/google_api_key', '' );
 
-		wp_register_script( 'google-maps-api', '//maps.google.com/maps/api/js?key=' . $google_api_key . '&libraries=places', array(), $version, true );
+		if ( $google_api_key ) {
+			wp_register_script( 'google-maps-api', 'https://maps.google.com/maps/api/js?key=' . $google_api_key . '&libraries=places', array(), $version, true );
+		} else {
+			wp_register_script( 'google-maps-api', 'https://maps.googleapis.com/maps/api/js?libraries=places', array(), $version );
+		}
+
 		wp_register_script( 'google-maps', $skeleton_url . 'js/fields/map.js', array( 'google-maps-api' ), $version );
 
 		wp_localize_script( 'skeleton', 'Skeleton', array(
