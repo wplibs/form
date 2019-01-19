@@ -1,0 +1,79 @@
+/* Input group */
+.wplibs-input-group {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+
+  &__control {
+    position: relative;
+    flex: 1 1 auto;
+    width: 1%;
+    margin: 0;
+
+    &:focus {
+      z-index: 3;
+    }
+
+    &:not(:last-child) {
+      border-top-right-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+    }
+
+    &:not(:first-child) {
+      border-top-left-radius: 0 !important;
+      border-bottom-left-radius: 0 !important;
+    }
+  }
+
+  &__append,
+  &__prepend {
+    display: flex;
+
+    .button {
+      z-index: 2;
+      position: relative;
+      margin: 0;
+    }
+
+    .button + .button,
+    .button + .wplibs-input-group__text,
+    .wplibs-input-group__text + .wplibs-input-group__text,
+    .wplibs-input-group__text + .button {
+      margin-left: -2px;
+    }
+  }
+
+  &__append {
+    margin-left: -2px;
+  }
+
+  &__prepend {
+    margin-right: -2px;
+  }
+}
+
+.wplibs-input-group > .wplibs-input-group__prepend > .button,
+.wplibs-input-group > .wplibs-input-group__prepend > .wplibs-input-group__text,
+.wplibs-input-group > .wplibs-input-group__prepend > .wplibs-input-group__control,
+.wplibs-input-group > .wplibs-input-group__append:not(:last-child) > .button,
+.wplibs-input-group > .wplibs-input-group__append:not(:last-child) > .wplibs-input-group__text,
+.wplibs-input-group > .wplibs-input-group__append:not(:last-child) > .wplibs-input-group__control,
+.wplibs-input-group > .wplibs-input-group__append:last-child > .wplibs-input-group__text:not(:last-child) {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.wplibs-input-group > .wplibs-input-group__append > .button,
+.wplibs-input-group > .wplibs-input-group__append > .wplibs-input-group__text,
+.wplibs-input-group > .wplibs-input-group__append > .wplibs-input-group__control,
+.wplibs-input-group > .wplibs-input-group__prepend:not(:first-child) > .button,
+.wplibs-input-group > .wplibs-input-group__prepend:not(:first-child) > .wplibs-input-group__text,
+.wplibs-input-group > .wplibs-input-group__prepend:not(:first-child) > .wplibs-input-group__control,
+.wplibs-input-group > .wplibs-input-group__prepend:first-child > .button:not(:first-child),
+.wplibs-input-group > .wplibs-input-group__prepend:first-child > .wplibs-input-group__text:not(:first-child),
+.wplibs-input-group > .wplibs-input-group__prepend:first-child > .wplibs-input-group__control:not(:first-child) {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}

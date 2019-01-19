@@ -1,0 +1,38 @@
+@mixin in-mobile() {
+  @media only screen and (max-width: 782px) {
+    @content;
+  }
+}
+
+@mixin in-desktop() {
+  @media only screen and (min-width: 783px) {
+    @content;
+  }
+}
+
+@mixin pseudoicon($glyph: "\f333", $font-family: 'Dashicons') {
+  content: $glyph;
+  font-family: $font-family;
+  speak: none;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  text-indent: 0;
+  text-align: center;
+}
+
+@mixin input-controls() {
+  select,
+  textarea,
+  input[type="url"],
+  input[type="text"],
+  input[type="email"],
+  input[type="search"],
+  input[type="number"],
+  input[type="password"] {
+    @content
+  }
+}

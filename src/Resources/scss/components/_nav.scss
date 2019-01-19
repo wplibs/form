@@ -1,0 +1,84 @@
+.wplibs-box__nav--horizontal {
+	margin: 0 0 20px;
+	padding: 7px 0 0;
+	border-bottom: 1px solid #ccc;
+
+	&:after {
+		content: '';
+		clear: both;
+		display: block;
+	}
+
+	> li {
+		float: left;
+		margin: 0 0 0 7px !important;
+		padding: 0;
+		z-index: 10;
+		position: relative;
+		top: 1px;
+	}
+
+	> li > a {
+		color: #555;
+		background: #efefef;
+		font-size: 14px;
+		font-weight: 500;
+		white-space: nowrap;
+		text-decoration: none;
+		display: inline-block;
+		padding: 0.5em 1.2em;
+		border: 1px solid #ccc;
+
+		&:hover,
+		&:focus {
+			color: #444;
+			background-color: #f7f7f7;
+		}
+	}
+
+	> .active > a,
+	> .active > a:hover,
+	> .active > a:focus,
+	> .active > a:focus:active {
+		color: #111;
+		background: #fff;
+		border-bottom-color: transparent !important;
+	}
+}
+
+.wplibs-box__nav--vertical {
+	margin: 0;
+	padding: 0;
+	border-right: 1px solid #eee;
+
+	> li {
+		margin: 0 !important;
+		padding: 0;
+		display: block;
+	}
+
+	> li > a {
+		color: #666;
+		font-size: 13px;
+		font-weight: 500;
+		margin: 0;
+		padding: 0.85em 1.2em;
+		display: block;
+		text-decoration: none;
+		border-bottom: 1px solid #eee;
+
+		&:hover,
+		&:active {
+			background-color: #f7f7f7;
+		}
+	}
+
+	> .active > a,
+	> .active > a:hover,
+	> .active > a:focus,
+	> .active > a:focus:active {
+		color: #333;
+		background-color: #f7f7f7;
+		box-shadow: 3px 0 0 0 #2196F3 inset;
+	}
+}

@@ -1,0 +1,80 @@
+.wplibs-control-dimension {
+  display: inline-flex;
+
+  li {
+    flex: 0 0 75px;
+    max-width: 75px;
+    margin: 0 0 0 -2px !important;
+		padding: 0;
+
+    label {
+      color: #565656;
+      display: block;
+      text-align: center;
+      font-size: 9px;
+      text-transform: uppercase;
+      padding-top: 5px;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      display: block;
+      text-align: center;
+      width: 100%;
+      min-width: 100%;
+      border-radius: 0;
+			margin: 0;
+
+      &:focus {
+        position: relative;
+        z-index: 10;
+      }
+
+      &:focus + label {
+        color: #151515;
+      }
+    }
+
+    &:first-child input {
+      border-radius: 6px 0 0 6px;
+    }
+  }
+
+  .button {
+    //width: 45px;
+    //height: 39px;
+		line-height: 1;
+    margin-left: -1px;
+    border-radius: 0 3px 3px 0;
+    box-shadow: none;
+
+    &:focus {
+      transform: translateY(0);
+      border-color: #25D5A7;
+    }
+
+		.dashicons {
+			font-size: 18px;
+		}
+
+    &.unlinked {
+      background-color: #fff;
+
+      .wplibs-control-dimension__linked {
+        display: none !important;
+      }
+    }
+
+    &:not(.unlinked) {
+      background-color: #eee;
+
+      .wplibs-control-dimension__unlinked {
+        display: none !important;
+      }
+    }
+
+		&.linked {
+			color: #2196f3
+		}
+	}
+}

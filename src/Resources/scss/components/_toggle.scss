@@ -1,0 +1,65 @@
+// Thanks https://proto.io/freebies/onoff/
+$active_bg_color:     #49E845;
+$inactive_bg_color:   #fff;
+$switch_bg_color:     #fff;
+$switch_border_color: #e3e3e3;
+
+.wplibs-onoffswitch {
+  width: 45px;
+  user-select: none;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 7px;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  > input[type="checkbox"] {
+    display: none !important;
+  }
+
+  > label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    height: 24px;
+    padding: 0;
+    line-height: 24px;
+    border: 2px solid $switch_border_color;
+    border-radius: 24px;
+    background-color: $inactive_bg_color;
+    transition: background-color 0.2s linear;
+
+    &:before {
+      content: "";
+      display: block;
+      width: 24px;
+      margin: 0;
+      background: $switch_bg_color;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 21px;
+      border: 2px solid $switch_border_color;
+      border-radius: 24px;
+      transition: all 0.15s cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+}
+
+.wplibs-onoffswitch > input[type="checkbox"]:checked {
+  + label {
+    background-color: $active_bg_color;
+  }
+
+  + label,
+  + label:before {
+    border-color: $active_bg_color;
+  }
+
+  + label:before {
+    right: 0;
+  }
+}

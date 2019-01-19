@@ -1,0 +1,84 @@
+.cmb-type-social-link {
+	select.suru-input-group__control {
+    width: 120px;
+    min-width: 120px;
+  }
+}
+
+.wplibs-control-link {
+	.button {
+		line-height: 1;
+	}
+}
+
+.button-group,
+.wplibs-control-text-align {
+  margin: 0;
+  padding: 0;
+
+  li {
+    float: left;
+    padding: 0;
+    margin: 0 5px 0 0;
+  }
+
+  input[type="radio"] {
+    display: none;
+  }
+
+  input[type="radio"]:checked + label {
+    border-color: #656565;
+    background-color: #eee;
+		position: relative;
+		z-index: 10;
+  }
+
+  label.button {
+    border-radius: 1px;
+    text-align: center;
+  }
+}
+
+.suru-control-typography__row {
+  display: flex;
+  flex-wrap: nowrap;
+
+  &:not(:last-child) {
+    margin-bottom: 7px;
+  }
+
+  > div {
+    flex-grow: 1;
+    flex-basis: 0;
+  }
+
+  label {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 3px;
+  }
+
+  select,
+  input[type="number"] {
+    width: 100% !important;
+    min-width: auto !important;
+  }
+
+  .suru-control-typography__family,
+  .suru-control-typography__backup {
+    flex-basis: 180px;
+  }
+}
+
+
+.attachment-media-view .placeholder,
+.customize-control-header .placeholder {
+  width: 100%;
+  position: relative;
+  text-align: center;
+  cursor: default;
+  border: 1px dashed #b4b9be;
+  box-sizing: border-box;
+  padding: 9px 0;
+  line-height: 20px;
+}
