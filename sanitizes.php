@@ -56,7 +56,7 @@ function wplibs_sanitize_checkbox( $value ) {
 function wplibs_sanitize_color( $color ) {
 	$color = trim( $color );
 
-	if ( empty( $color ) || is_string( $color ) ) {
+	if ( empty( $color ) || ! is_string( $color ) ) {
 		return '';
 	}
 
