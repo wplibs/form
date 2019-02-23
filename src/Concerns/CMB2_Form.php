@@ -33,6 +33,10 @@ trait CMB2_Form {
 	 * {@inheritdoc}
 	 */
 	public function get_field( $field, $field_group = null, $deprecated = false ) {
+		if ( $field instanceof \CMB2_Field ) {
+			return $field;
+		}
+
 		$field = is_array( $field ) ? $field['id'] : (string) $field;
 
 		// Just for back-compat.
