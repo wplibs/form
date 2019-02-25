@@ -30,6 +30,24 @@ class Loader extends \CMB2_hookup {
 	}
 
 	/**
+	 * {@inheritdoc}
+	 */
+	public function column_display( $column_name, $object_id ) {
+		if ( isset( $this->columns[ $column_name ] ) ) {
+			$field = $this->columns[ $column_name ]['field']['id'];
+
+			/* @var \WPLibs\Form\Box\Builder $builder */
+			$builder = $this->cmb;
+
+			$form = $builder
+				->set_storage( $builder->get_new_storage( $object_id, $this->object_type ) )
+				->get_form();
+
+			$form->get( $field )->render_column();
+		}
+	}
+
+	/**
 	 * Enqueue the form styles.
 	 */
 	public static function enqueue_styles() {

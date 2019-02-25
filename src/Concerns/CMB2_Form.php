@@ -34,12 +34,11 @@ trait CMB2_Form {
 	 */
 	public function get_field( $field, $field_group = null, $deprecated = false ) {
 		if ( $field instanceof \CMB2_Field ) {
-			return $field;
+			$field = $field->id( true );
 		}
 
 		$field = is_array( $field ) ? $field['id'] : (string) $field;
 
-		// Just for back-compat.
 		if ( $field_group ) {
 			return $this->get_field_in_group( $field_group, $field );
 		}
